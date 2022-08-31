@@ -16,14 +16,12 @@ export const UserForm = () => {
   }
   const url = process.env.REACT_APP_URL
   const { toggleActive, addNewData } = useContext(AppContext)
-  const [teamOptions, setTeamOptions] = useState([])
-  const [positionOptions, setPositionOptions] = useState([])
   const [teamName, setTeamName] = useState('')
   const [positionName, setPositionName] = useState('')
   const [filteredPositionOptions, setFilteredPositionOptions] = useState([])
   const [userForm, setUserForm] = useState(initialState)
-
-  const { name, surname, email, phone_number, team_id, position } = userForm
+  const [params, setParams] = useState({})
+  const { name, surname, email, phone_number } = userForm
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -44,7 +42,7 @@ export const UserForm = () => {
       if (!phoneNumberRegEx.test(userForm.phone_number)) throw new Error('not valid phone number')
       if (typeof userForm.team_id !== "number") throw new Error('Please select option')
       if (typeof userForm.position !== "number") throw new Error('Please select options')
-      localStorage.setItem("user", JSON.stringify({ ...userForm, position: positionName, team_id: teamName }))
+
       addNewData(userForm)
       toggleActive()
     } catch (e) {
@@ -55,53 +53,85 @@ export const UserForm = () => {
   const getTeamValue = async () => {
     const { data: team } = await axios(`${url}/teams`)
     const { data: position } = await axios(`${url}/positions`)
-    setTeamOptions(team.data)
-    setPositionOptions(position.data)
+
+    setParams(getParams(team, position))
+  }
+
+  const getParams = (team, position) => {
+    const teamObj = {}
+    for (let i = 0; i < team.data.length; i++) {
+      teamObj[team.data[i].id] = { id: team.data[i].id, name: team.data[i].name }
+    }
+    for (let i = 0; i < position.data.length; i++) {
+      if (!teamObj[position.data[i].team_id].hasOwnProperty('position')) {
+        teamObj[position.data[i].team_id] = {
+          ...teamObj[position.data[i].team_id],
+          position: [position.data[i]]
+        }
+      } else {
+        teamObj[position.data[i].team_id].position.push(position.data[i])
+      }
+    }
+    const teamArray = []
+    for (let id in teamObj) {
+      teamArray.push(teamObj[id])
+    }
+
+    return [teamArray]
   }
 
 
   useEffect(() => {
     getTeamValue()
-  }, [userForm])
+
+  }, [])
 
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-      console.log(user)
+      const { teamName, positionName } = user
+      console.log(positionName)
+      setTeamName(teamName)
+      setPositionName(positionName)
       setUserForm(user);
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify({
+      ...userForm,
+      teamName,
+      positionName,
+    }))
+  }, [userForm, teamName, positionName])
+
+
   const selectedTeam = (e) => {
     const { value } = e.target
-    const filteredValue = teamOptions.filter(option => option.name === value)
-
-    setUserForm(prevState => {
-      return { ...prevState, team_id: filteredValue[0].id }
-    });
-    filterPositionById(filteredValue[0].id)
+    if (value === "თიმი") {
+      return setTeamName(value)
+    }
+    const filteredValue = params[0].filter(option => option.name === value)
+    setUserForm({ ...userForm, team_id: filteredValue[0].id })
     setTeamName(value)
-  }
+    setFilteredPositionOptions(filteredValue[0].position)
 
-  const filterPositionById = (id) => {
-
-    const filtered = positionOptions.filter(position => position.team_id === id)
-    console.log(filtered)
-    setFilteredPositionOptions(filtered)
   }
 
   const selectPosition = (e) => {
     const { value } = e.target;
+    if (value === 'პოზიცია' && teamName !== 'თიმი') {
+      return setPositionName(value)
+    }
     const filteredValue = filteredPositionOptions.filter(option => option.name === value)
-
+    setPositionName(value)
     setUserForm({
       ...userForm,
       position: filteredValue[0].id
     })
-    setPositionName(value)
-  }
 
+  }
 
   return (
      <>
@@ -116,13 +146,13 @@ export const UserForm = () => {
 
          <select value={teamName} onChange={selectedTeam}>
            <option>თიმი</option>
-           {teamOptions.map(team => <option key={team?.id} value={team?.name}>{team?.name}</option>)}
+           {params[0]?.map((param) => <option key={param.id} value={param?.name}>{param?.name}</option>)}
          </select>
 
          <select value={positionName} onChange={selectPosition}>
-           <option>პოზიცია</option>
-           {filteredPositionOptions.map(position => <option key={position.id}
-                                                            value={position?.name}>{position?.name}</option>)}
+           <option>{positionName ? `${positionName}` : 'პოზიცია'}</option>
+           {filteredPositionOptions?.map((position) => <option key={position.id}
+                                                               value={position?.name}>{position?.name}</option>)}
          < /select>
 
          {/*must end with @redberry.ge*/}

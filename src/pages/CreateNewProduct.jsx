@@ -5,7 +5,6 @@ import { AppContext } from "../context/app.context";
 
 const CreateNewProduct = () => {
   const { isActive, data } = useContext(AppContext)
-  console.log(data)
   return (
      <>
        {/*    Employee info*/}
