@@ -11,7 +11,7 @@ export const UserForm = () => {
     email: '',
     phone_number: '',
     team_id: '',
-    position: '',
+    position_id: '',
     token: process.env.REACT_APP_TOKEN
   }
   const url = process.env.REACT_APP_URL
@@ -41,7 +41,7 @@ export const UserForm = () => {
       if (!emailRegEx.test(userForm.email)) throw new Error('not valid email')
       if (!phoneNumberRegEx.test(userForm.phone_number)) throw new Error('not valid phone number')
       if (typeof userForm.team_id !== "number") throw new Error('Please select option')
-      if (typeof userForm.position !== "number") throw new Error('Please select options')
+      if (typeof userForm.position_id !== "number") throw new Error('Please select options')
 
       addNewData(userForm)
       toggleActive()
@@ -63,13 +63,13 @@ export const UserForm = () => {
       teamObj[team.data[i].id] = { id: team.data[i].id, name: team.data[i].name }
     }
     for (let i = 0; i < position.data.length; i++) {
-      if (!teamObj[position.data[i].team_id].hasOwnProperty('position')) {
+      if (!teamObj[position.data[i].team_id].hasOwnProperty('position_id')) {
         teamObj[position.data[i].team_id] = {
           ...teamObj[position.data[i].team_id],
-          position: [position.data[i]]
+          position_id: [position.data[i]]
         }
       } else {
-        teamObj[position.data[i].team_id].position.push(position.data[i])
+        teamObj[position.data[i].team_id].position_id.push(position.data[i])
       }
     }
     const teamArray = []
@@ -115,7 +115,7 @@ export const UserForm = () => {
     const filteredValue = params[0].filter(option => option.name === value)
     setUserForm({ ...userForm, team_id: filteredValue[0].id })
     setTeamName(value)
-    setFilteredPositionOptions(filteredValue[0].position)
+    setFilteredPositionOptions(filteredValue[0].position_id)
 
   }
 
@@ -128,7 +128,7 @@ export const UserForm = () => {
     setPositionName(value)
     setUserForm({
       ...userForm,
-      position: filteredValue[0].id
+      position_id: filteredValue[0].id
     })
 
   }

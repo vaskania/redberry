@@ -6,7 +6,7 @@ const initialValue = {
   name: '',
   surname: '',
   team_id: null,
-  position: null,
+  position_id: null,
   phone_number: '',
   email: '',
   token: '',

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import { AppContext } from "../context/app.context";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const LaptopForm = () => {
   const initialState = {
@@ -22,11 +23,9 @@ export const LaptopForm = () => {
   const [laptopDetails, setLaptopDetails] = useState(initialState)
   const [brandName, setBrandName] = useState('')
   const [cpuName, setCpusName] = useState('')
-  const { data, toggleActive } = useContext(AppContext)
+  const { data, toggleActive, addNewData } = useContext(AppContext)
   const navigate = useNavigate()
 
-
-  console.log(data)
   const {
     laptop_name,
     laptop_cpu_cores,
@@ -93,6 +92,7 @@ export const LaptopForm = () => {
     localStorage.setItem("laptop", JSON.stringify({
       ...laptopDetails,
     }))
+    addNewData(laptopDetails)
   }, [laptopDetails])
 
   useEffect(() => {
@@ -105,11 +105,23 @@ export const LaptopForm = () => {
     }
   }, []);
 
-  const handleSubmit = (e) => {
+  const sendData = async (data) => {
+    console.log(data)
+    console.log('mevida')
+    const res = await axios.post(`${process.env.REACT_APP_URL}/laptop/create`, data, {
+      headers: { "Authorization": `Bearer ${process.env.REACT_APP_TOKEN}` }
+    })
+    return res
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log(data)
+    const res = await sendData(data)
+    console.log(res)
     localStorage.removeItem('user')
     localStorage.removeItem('laptop')
-    // toggleActive()
+    toggleActive()
     navigate('/success')
   }
 
