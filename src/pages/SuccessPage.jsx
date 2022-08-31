@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 export const SuccessPage = () => {
-    return (
-        <>
-            <p>item added successful</p>
-            <button>go to list</button>
-            <button>go to home</button>
-        </>
-    )
+  const navigate = useNavigate()
+  return (
+     <>
+       <p>item added successful</p>
+       <button onClick={() => navigate('/laptops')}>go to list</button>
+       <button onClick={() => navigate('/')}>go to home</button>
+     </>
+  )
 }

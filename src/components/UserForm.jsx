@@ -82,8 +82,9 @@ export const UserForm = () => {
 
 
   useEffect(() => {
-    getTeamValue()
 
+    getTeamValue()
+    // eslint-disable-next-line
   }, [])
 
 
@@ -91,7 +92,6 @@ export const UserForm = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       const { teamName, positionName } = user
-      console.log(positionName)
       setTeamName(teamName)
       setPositionName(positionName)
       setUserForm(user);

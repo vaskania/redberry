@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
+import { AppContext } from "../context/app.context";
+import { useNavigate } from "react-router-dom";
 
 export const LaptopForm = () => {
   const initialState = {
@@ -17,21 +19,19 @@ export const LaptopForm = () => {
 
   const { data: brands, loading, error } = useFetch(`${process.env.REACT_APP_URL}/brands`)
   const { data: cpus } = useFetch(`${process.env.REACT_APP_URL}/cpus`)
-  const ref = useRef()
   const [laptopDetails, setLaptopDetails] = useState(initialState)
   const [brandName, setBrandName] = useState('')
   const [cpuName, setCpusName] = useState('')
+  const { data, toggleActive } = useContext(AppContext)
+  const navigate = useNavigate()
 
+
+  console.log(data)
   const {
     laptop_name,
-    laptop_image,
-    laptop_brand_id,
-    laptop_cpu,
     laptop_cpu_cores,
     laptop_cpu_threads,
     laptop_ram,
-    laptop_hard_drive_type,
-    laptop_purchase_date,
     laptop_price
   } = laptopDetails
 
@@ -60,8 +60,6 @@ export const LaptopForm = () => {
 
   const handleChange = (e) => {
     const { value } = e.target;
-    console.log(value)
-    console.log(e.target.name)
     setLaptopDetails({
       ...laptopDetails,
       [e.target.name]: value.trim()
@@ -91,14 +89,37 @@ export const LaptopForm = () => {
     setLaptopDetails({ ...laptopDetails, laptop_cpu: filtered[0].id })
   }
 
+  useEffect(() => {
+    localStorage.setItem("laptop", JSON.stringify({
+      ...laptopDetails,
+    }))
+  }, [laptopDetails])
+
+  useEffect(() => {
+    const laptop = JSON.parse(localStorage.getItem('laptop'));
+    if (laptop) {
+      const fromStorage = laptop
+      console.log(fromStorage)
+
+      setLaptopDetails(laptop);
+    }
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    localStorage.removeItem('user')
+    localStorage.removeItem('laptop')
+    // toggleActive()
+    navigate('/success')
+  }
+
   if (loading) return <h1>loading ...</h1>
 
   if (error) console.log(error)
 
-  console.log(laptopDetails)
   return (
      <>
-       <form>
+       <form onSubmit={handleSubmit}>
          <input type='file' onChange={selectFile}/>
 
          <label>ლეპტოპის სახელი</label>
@@ -135,8 +156,8 @@ export const LaptopForm = () => {
          <label>ლეპტოპის მდგომარეობა</label>
          <input type="radio" name='condition' value="ახალი" onChange={handleChange}/> <label>ახალი</label>
          <input type="radio" name='condition' value="მეორადი" onChange={handleChange}/> <label>მეორადი</label>
-         <button>უკან</button>
-         <button>დამახსოვრება</button>
+         <button onChange={toggleActive}>უკან</button>
+         <button type='submit'>დამახსოვრება</button>
        </form>
      </>
   )
