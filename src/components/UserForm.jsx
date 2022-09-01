@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { AppContext } from "../context/app.context";
 import { geoRegEx, emailRegEx, phoneNumberRegEx } from '../utils/index'
+import { useNavigate } from "react-router-dom";
 
 
 export const UserForm = () => {
@@ -15,13 +16,14 @@ export const UserForm = () => {
     token: process.env.REACT_APP_TOKEN
   }
   const url = process.env.REACT_APP_URL
-  const { toggleActive, addNewData } = useContext(AppContext)
+  const { addNewData } = useContext(AppContext)
   const [teamName, setTeamName] = useState('')
   const [positionName, setPositionName] = useState('')
   const [filteredPositionOptions, setFilteredPositionOptions] = useState([])
   const [userForm, setUserForm] = useState(initialState)
   const [params, setParams] = useState({})
-  const { name, surname, email, phone_number } = userForm
+  const { name, surname, email, phone_number } = userForm;
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -44,7 +46,7 @@ export const UserForm = () => {
       if (typeof userForm.position_id !== "number") throw new Error('Please select options')
 
       addNewData(userForm)
-      toggleActive()
+      navigate('/laptop/create')
     } catch (e) {
       console.log(e)
     }

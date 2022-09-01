@@ -4,7 +4,7 @@ import b2 from './Button2.module.css'
 
 export const Landing = () => {
   const navigate = useNavigate()
-  const addNewProduct = () => navigate('/laptop/create')
+  const addNewProduct = () => navigate('/user/create')
   const getAllProduct = () => navigate('/laptops')
 
   return (
