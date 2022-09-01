@@ -27,6 +27,7 @@ export const LaptopForm = () => {
   const [cpuName, setCpusName] = useState('')
   const { data, toggleActive, addNewData } = useContext(AppContext)
   const navigate = useNavigate()
+  const [params, setParams] = useState({})
   const {
     laptop_name,
     laptop_cpu_cores,
@@ -53,7 +54,6 @@ export const LaptopForm = () => {
     }
 
   }
-
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -94,18 +94,18 @@ export const LaptopForm = () => {
     setLaptopDetails({ ...laptopDetails, laptop_cpu: filtered[0].name })
   }
 
-  // useEffect(() => {
-  //   localStorage.setItem("laptop", JSON.stringify({
-  //     ...laptopDetails,
-  //   }))
-  //   addNewData(laptopDetails)
-  // }, [laptopDetails])
+  useEffect(() => {
+    localStorage.setItem("laptop", JSON.stringify({
+      ...laptopDetails,
+    }))
+    addNewData(laptopDetails)
+  }, [laptopDetails])
 
   useEffect(() => {
     const laptop = JSON.parse(localStorage.getItem('laptop'));
     if (laptop) {
       const fromStorage = laptop
-      console.log(fromStorage)
+
       setLaptopDetails(laptop);
     }
   }, []);
@@ -135,9 +135,14 @@ export const LaptopForm = () => {
       if (!laptop_hard_drive_type) throw new Error('please select hard drive type')
       if (laptop_price === 0) throw new Error('please add laptop price')
       if (!laptop_state) throw new Error('please select laptop condition')
+
+
+
       await sendData(data)
       localStorage.removeItem('user')
       localStorage.removeItem('laptop')
+
+
       toggleActive()
       navigate('/success')
     } catch (e) {
