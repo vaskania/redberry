@@ -1,23 +1,28 @@
 import axios from "axios";
-import {useEffect} from "react";
+import { useEffect, useState } from "react";
+import UserComponent from "../components/UserComponent";
 
 export const LaptopsList = () => {
-    const token = "47d53d62672b00ec9599a278ebfb7bfa"
-    const url = `https://pcfy.redberryinternship.ge/api/laptops?token=${token}`
+  const token = process.env.REACT_APP_TOKEN
+  const url = `https://pcfy.redberryinternship.ge/api/laptops?token=${token}`
+  const [products, setProducts] = useState([])
 
-    const getData = async () => {
-        await axios.get(url , { headers: {"Authorization" : `Bearer ${token}`} })
-            .then(res => console.log(res))
-            .catch((error) =>    console.log(error))
-    }
 
-    useEffect(()=> {
-        getData()
-    },[])
+  const getData = async () => {
+    const { data } = await axios.get(url, { headers: { "Authorization": `Bearer ${token}` } })
+    setProducts(data)
+  }
 
-    return (
-        <>
-            <p>all products</p>
-        </>
-    )
+  useEffect(() => {
+    getData()
+    // eslint-disable-next-line
+  }, [])
+
+  if (!products.data) return <h5>loading</h5>
+
+  return (
+     <>
+       {products?.data.map(el => <UserComponent key={el.laptop.id} data={el}/>)}
+     </>
+  )
 }
