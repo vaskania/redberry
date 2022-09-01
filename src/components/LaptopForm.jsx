@@ -23,11 +23,8 @@ export const LaptopForm = () => {
   const { data: brands, loading, error } = useFetch(`${process.env.REACT_APP_URL}/brands`)
   const { data: cpus } = useFetch(`${process.env.REACT_APP_URL}/cpus`)
   const [laptopDetails, setLaptopDetails] = useState(initialState)
-  const [brandName, setBrandName] = useState('')
-  const [cpuName, setCpusName] = useState('')
   const { data, toggleActive, addNewData } = useContext(AppContext)
   const navigate = useNavigate()
-  const [params, setParams] = useState({})
   const {
     laptop_name,
     laptop_cpu_cores,
@@ -55,6 +52,8 @@ export const LaptopForm = () => {
 
   }
 
+  console.log(laptop_cpu)
+
   const handleChange = (e) => {
     const { value } = e.target;
 
@@ -73,39 +72,64 @@ export const LaptopForm = () => {
   }
 
   const selectBrand = (e) => {
-    const { value } = e.target;
-    if (value === 'ლეპტოპის ბრენდი') {
-      return setBrandName(value)
-    }
 
-    const filtered = brands.data.filter(brand => brand.name === value)
-    // localStorage.setItem('laptop', JSON.stringify({...laptopDetails, laptop_brand_id: value}))
-    setBrandName(filtered[0].name)
+    const { value } = e.target;
+
+    if (value === '') {
+      localStorage.setItem('laptop', JSON.stringify({
+        ...laptopDetails,
+        laptop_brand: '',
+        laptop_brand_id: -1
+      }))
+      setLaptopDetails({
+        ...laptopDetails,
+        laptop_brand_id: -1
+      })
+      return;
+    }
+    const filtered = brands.data.filter(brand => brand.id === +value)
     setLaptopDetails({ ...laptopDetails, laptop_brand_id: filtered[0].id })
+    localStorage.setItem('laptop', JSON.stringify({
+      ...laptopDetails,
+      laptop_brand_id: value,
+      laptop_brand: filtered[0].name
+    }))
   }
 
   const selectCpu = (e) => {
+
     const { value } = e.target
-    if (value === 'CPU') {
-      return setCpusName(value)
+    console.log(value)
+    if (value === '') {
+      setLaptopDetails({
+        ...laptopDetails,
+        laptop_cpu: -1
+      })
+      return
     }
-    const filtered = cpus.data.filter(cpu => cpu.name === value)
-    setCpusName(filtered[0].name)
-    setLaptopDetails({ ...laptopDetails, laptop_cpu: filtered[0].name })
+    setLaptopDetails({
+      ...laptopDetails,
+      laptop_cpu: value
+    })
+    const laptop = JSON.parse(localStorage.getItem('laptop'));
+    localStorage.setItem('laptop', JSON.stringify({
+      ...laptop,
+      laptop_cpu: value
+    }))
+    // setLaptopDetails({ ...laptopDetails, laptop_cpu: filtered[0].name })
   }
 
-  useEffect(() => {
-    localStorage.setItem("laptop", JSON.stringify({
-      ...laptopDetails,
-    }))
-    addNewData(laptopDetails)
-  }, [laptopDetails])
+  // useEffect(() => {
+  //   localStorage.setItem("laptop", JSON.stringify({
+  //     ...laptopDetails,
+  //   }))
+  //   addNewData(laptopDetails)
+  // }, [laptopDetails])
 
   useEffect(() => {
     const laptop = JSON.parse(localStorage.getItem('laptop'));
-    if (laptop) {
-      const fromStorage = laptop
 
+    if (laptop) {
       setLaptopDetails(laptop);
     }
   }, []);
@@ -137,7 +161,6 @@ export const LaptopForm = () => {
       if (!laptop_state) throw new Error('please select laptop condition')
 
 
-
       await sendData(data)
       localStorage.removeItem('user')
       localStorage.removeItem('laptop')
@@ -163,13 +186,14 @@ export const LaptopForm = () => {
          <label>ლეპტოპის სახელი</label>
          <input type='text' name="laptop_name" value={laptop_name} onChange={handleChange}/>
 
-         <select value={brandName} onChange={selectBrand}>
-           <option>{brandName ? `${brandName}` : "ლეპტოპის ბრენდი"}</option>
-           {brands?.data?.map(brand => <option key={brand?.id} value={brand?.name}>{brand.name}</option>)}
+         <select value={laptop_brand_id} onChange={selectBrand}>
+           <option value=''>ლეპტოპის ბრენდი</option>
+           {/*<option>{brandName ? `${brandName}` : "ლეპტოპის ბრენდი"}</option>*/}
+           {brands?.data?.map(brand => <option key={brand?.id} value={brand?.id}>{brand.name}</option>)}
          </select>
-         <select value={cpuName} onChange={selectCpu}>
-           <option>{cpuName ? `${cpuName}` : "CPU"}</option>
-           {cpus?.data?.map(cpu => <option key={cpu?.id} value={cpu?.name}>{cpu.name}</option>)}
+         <select value={laptop_cpu} onChange={selectCpu}>
+           <option value=''>CPU</option>
+           {cpus?.data?.map(cpu => <option key={cpu?.id} value={cpu?.id}>{cpu.name}</option>)}
          </select>
          {/*/!*must contain only numbers   *!/*/}
          <label>CPU-ს ბირთვი</label>
