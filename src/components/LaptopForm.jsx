@@ -35,7 +35,8 @@ export const LaptopForm = () => {
     laptop_state,
     laptop_image,
     laptop_cpu,
-    laptop_brand_id
+    laptop_brand_id,
+     laptop_purchase_date
   } = laptopDetails
 
   const selectFile = (e) => {
@@ -91,7 +92,7 @@ export const LaptopForm = () => {
     setLaptopDetails({ ...laptopDetails, laptop_brand_id: filtered[0].id })
     localStorage.setItem('laptop', JSON.stringify({
       ...laptopDetails,
-      laptop_brand_id: value,
+      laptop_brand_id: +value,
       laptop_brand: filtered[0].name
     }))
   }
@@ -99,7 +100,7 @@ export const LaptopForm = () => {
   const selectCpu = (e) => {
 
     const { value } = e.target
-    console.log(value)
+
     if (value === '') {
       setLaptopDetails({
         ...laptopDetails,
@@ -116,15 +117,9 @@ export const LaptopForm = () => {
       ...laptop,
       laptop_cpu: value
     }))
-    // setLaptopDetails({ ...laptopDetails, laptop_cpu: filtered[0].name })
+
   }
 
-  // useEffect(() => {
-  //   localStorage.setItem("laptop", JSON.stringify({
-  //     ...laptopDetails,
-  //   }))
-  //   addNewData(laptopDetails)
-  // }, [laptopDetails])
 
   useEffect(() => {
     const laptop = JSON.parse(localStorage.getItem('laptop'));
@@ -205,19 +200,24 @@ export const LaptopForm = () => {
          <label>RAM</label>
          <input type='number' name="laptop_ram" value={laptop_ram} onChange={handleChange}/>
          <label>მეხსიერების ტიპი</label>
-         <input type="radio" name='laptop_hard_drive_type' value='SSD' onChange={handleChange}/> <label>SSD</label>
-         <input type="radio" name='laptop_hard_drive_type' value='HDD' onChange={handleChange}/> <label>HDD</label>
+         <input type="radio" name='laptop_hard_drive_type' checked={laptop_hard_drive_type === 'SSD'} value='SSD'
+                onChange={handleChange}/> <label>SSD</label>
+         <input type="radio" name='laptop_hard_drive_type' value='HDD' checked={laptop_hard_drive_type === "HDD"}
+                onChange={handleChange}/> <label>HDD</label>
          <label>შეძენის რიცხვი (არჩევითი)</label>
          <input
             type='date' name="laptop_purchase_date"
             onChange={handleChange}
+            value={laptop_purchase_date}
          />
          {/*must contain only numbers   */}
          <label>ლეპტოპის ფასი</label>
          <input type='number' name='laptop_price' value={laptop_price} onChange={handleChange}/>
          <label>ლეპტოპის მდგომარეობა</label>
-         <input type="radio" name='laptop_state' value="new" onChange={handleChange}/> <label>ახალი</label>
-         <input type="radio" name='laptop_state' value="used" onChange={handleChange}/> <label>მეორადი</label>
+         <input type="radio" name='laptop_state' value='new' checked={laptop_state === 'new'} onChange={handleChange}/>
+         <label>ახალი</label>
+         <input type="radio" name='laptop_state' value='used' checked={laptop_state === 'used'}
+                onChange={handleChange}/> <label>მეორადი</label>
          <button onChange={toggleActive}>უკან</button>
          <button type='submit'>დამახსოვრება</button>
        </form>
