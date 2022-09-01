@@ -9,7 +9,7 @@ export const LaptopForm = () => {
   const initialState = {
     laptop_name: '',
     laptop_image: '',
-    laptop_brand_id: null,
+    laptop_brand_id: 0,
     laptop_cpu: '',
     laptop_cpu_cores: 0,
     laptop_cpu_threads: 0,
@@ -36,7 +36,7 @@ export const LaptopForm = () => {
     laptop_image,
     laptop_cpu,
     laptop_brand_id,
-     laptop_purchase_date
+    laptop_purchase_date
   } = laptopDetails
 
   const selectFile = (e) => {
@@ -53,7 +53,6 @@ export const LaptopForm = () => {
 
   }
 
-  console.log(laptop_cpu)
 
   const handleChange = (e) => {
     const { value } = e.target;
