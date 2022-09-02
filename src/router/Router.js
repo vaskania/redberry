@@ -3,8 +3,8 @@ import { Landing } from "../pages/LandingPage/LandingPage";
 import { LaptopsList } from "../pages/LaptopList/LaptopsList";
 import { LaptopDetail } from "../pages/LaptopDetail/LaptopDetail";
 import { SuccessPage } from "../pages/SuccessPage/SuccessPage";
-import { LaptopForm } from "../components/LaptopForm";
-import { UserForm } from "../components/UserForm";
+import { LaptopForm } from "../pages/LaptopForm/LaptopForm";
+import { UserForm } from "../pages/UserForm/UserForm";
 
 export const Router = () => (
    <Routes>

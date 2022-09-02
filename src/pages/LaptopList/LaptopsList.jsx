@@ -29,8 +29,8 @@ export const LaptopsList = () => {
 
   return (
      <div className={styles.container}>
-       <BackButton onClick={back}/>
-       <h3>ჩანაწერების სია</h3>
+       <BackButton onClick={back} />
+       <h3 className={styles.header} >ჩანაწერების სია</h3>
        <div className={styles.list}>
          {products?.data.map(el => <LaptopItem key={el.laptop.id} data={el}/>)}
        </div>

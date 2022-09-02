@@ -1,9 +1,12 @@
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
-import { AppContext } from "../context/app.context";
-import { geoRegEx, emailRegEx, phoneNumberRegEx } from '../utils/index'
+import { AppContext } from "../../context/app.context";
+import { geoRegEx, emailRegEx, phoneNumberRegEx } from '../../utils'
 import { useNavigate } from "react-router-dom";
-
+import styles from './UserForm.module.css'
+import BackButton from "../../components/BackButton/BackButton";
+import Logo from '../../components/Logo1/Logo'
+import Button from "../../components/Button/Button";
 
 export const UserForm = () => {
   const initialState = {
@@ -133,35 +136,64 @@ export const UserForm = () => {
   console.log(data)
 
   return (
-     <>
-       <form onSubmit={addUser}>
-         {/*min 2 only georgian*/}
-         <label>სახელი</label>
-         <input type="text" name="name" value={name} onChange={handleChange}/>
-         {/*min 2 only georgian*/}
-         <label>გვარი</label>
-         <input type="text" name="surname" value={surname} onChange={handleChange}/>
+     <div className={styles.userForm}>
+       <BackButton onClick={()=>navigate('/')}/>
+       <div className={styles.nav}>
+         <div><h3>თანამშრომლის ინფო</h3></div>
+         <div><h3>ლეპტოპის მახასიათებლები</h3></div>
+       </div>
+       <div className={styles.line}/>
+       <div className={styles.form}>
+         <form onSubmit={addUser}>
+
+           <div className={styles.userInfo}>
+             <div className={styles.userName}>
+               <label className={styles.name}>სახელი</label>
+               <input className={styles.nameInput} type="text" name="name" value={name} onChange={handleChange} placeholder="გრიშა"/>
+               <label className={styles.nameHint}>მინიმუმ 2 სიმბოლო, ქართული ასოები</label>
+             </div>
+
+             <div className={styles.userSurname}>
+               <label className={styles.surname}>გვარი</label>
+               <input className={styles.surnameInput} type="text" name="surname" value={surname} onChange={handleChange} placeholder="ბაგრატიონი"/>
+               <label className={styles.surnameHint}>მინიმუმ 2 სიმბოლო, ქართული ასოები</label>
+             </div>
+           </div>
 
 
-         <select value={teamName} onChange={selectedTeam}>
-           <option>თიმი</option>
-           {params[0]?.map((param) => <option key={param.id} value={param?.name}>{param?.name}</option>)}
-         </select>
 
-         <select value={positionName} onChange={selectPosition}>
-           <option>{positionName ? `${positionName}` : 'პოზიცია'}</option>
-           {filteredPositionOptions?.map((position) => <option key={position.id}
-                                                               value={position?.name}>{position?.name}</option>)}
-         < /select>
+          <div className={styles.team}>
+            <select className={styles.selectTeam} value={teamName} onChange={selectedTeam}>
+              <option>თიმი</option>
+              {params[0]?.map((param) => <option className={styles.selectTeams} key={param.id} value={param?.name}>{param?.name}</option>)}
+            </select>
+          </div>
 
-         {/*must end with @redberry.ge*/}
-         <label>მეილი</label>
-         <input type='email' value={email} name='email' onChange={handleChange}/>
-         {/*+995 ... ... */}
-         <label>ტელეფონის ნომერი</label>
-         <input type="text" value={phone_number} name='phone_number' onChange={handleChange}/>
-         <button type="submit">Next</button>
-       </form>
-     </>
+          <div className={styles.position}>
+            <select className={styles.selectPosition} value={positionName} onChange={selectPosition}>
+              <option>{positionName ? `${positionName}` : 'პოზიცია'}</option>
+              {filteredPositionOptions?.map((position) => <option className={styles.selectPositions} key={position.id}
+                                                                  value={position?.name}>{position?.name}</option>)}
+            < /select>
+          </div>
+
+
+           <div className={styles.email}>
+             <label className={styles.emailLabel}>მეილი</label>
+             <input className={styles.emailInput} type='email' value={email} name='email' onChange={handleChange} placeholder="grisha666@redberry.ge"/>
+             <label className={styles.emailHint}>უნდა მთავრდებოდეს @redberry.ge-ით</label>
+           </div>
+
+           <div className={styles.phone}>
+             <label className={styles.phoneLabel}>ტელეფონის ნომერი</label>
+             <input className={styles.phoneInput} type="text" value={phone_number} name='phone_number' onChange={handleChange} placeholder="+995 590 00 07 01"/>
+             <label className={styles.phoneHint}>უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს</label>
+           </div>
+
+           <Button top="869px" width="176px" left="875px" >შემდეგი</Button>
+         </form>
+       </div>
+      <Logo />
+     </div>
   )
 }

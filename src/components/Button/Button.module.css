@@ -1,11 +1,4 @@
 .button {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 60px;
-    gap: 20px;
-
     position: absolute;
     width: 387px;
     height: 60px;
@@ -14,11 +7,6 @@
     border-radius: 8px;
     border: none;
     cursor: pointer;
-}
-
-.text {
-    width: 223px;
-    height: 24px;
 
     font-family: 'Helvetica Neue';
     font-style: normal;
@@ -27,13 +15,6 @@
     line-height: 24px;
 
     color: #FFFFFF;
-
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
 }
 
 @media screen and (max-width: 390px) {

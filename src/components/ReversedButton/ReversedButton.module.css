@@ -1,0 +1,49 @@
+.button {
+    position: absolute;
+    width: 94px;
+    height: 20px;
+    left: 310px;
+    top: 125px;
+    cursor: pointer;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+    text-decoration-line: underline;
+
+    /* ლურჯი/700 */
+
+    color: #4386A9;
+}
+
+
+@media screen and (max-width: 390px) {
+    .button {
+        position: absolute;
+        width: 83px;
+        height: 21px;
+        left: 137px;
+        top: 80px;
+
+
+        font-family: 'Helvetica Neue';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        /* identical to box height, or 150% */
+
+        display: flex;
+        align-items: center;
+        text-decoration-line: underline;
+
+        /* ლურჯი/700 */
+
+        color: #4386A9;
+    }
+}

@@ -64,20 +64,29 @@ const LaptopDetails = ({ data }) => {
 
        <div className={styles.laptopDetails2}>
          <div className={styles.left}>
+           <div className={styles.fields}>
+             <span>ლეპტოპის მდგომარეობა:</span>
+             <span>ლეპტოპის ფასი:</span>
+           </div>
+           <div className={styles.info}>
+             <span>{laptop.state}</span>
+             <span>{laptop.price}</span>
+           </div>
 
          </div>
          <div className={styles.right}>
-
+           <div className={styles.fields}>
+             <span>შევსების რიცხვი:</span>
+           </div>
+           <div className={styles.info}>
+             <span>{laptop.purchase_date} </span>
+           </div>
          </div>
        </div>
-       {/*<div>*/}
-       {/*  <h6>ლეპტოპის მდგომარეობა:</h6>*/}
-       {/*  <span>{laptop.state}</span>*/}
-       {/*  <h6>ლეპტოპის ფასი:</h6>*/}
-       {/*  <span>{laptop.price}</span>*/}
-       {/*  <h6>შევსების რიცხვი:</h6>*/}
-       {/*  <span>{laptop.purchase_date}</span>*/}
-       {/*</div>*/}
+       <div>
+
+
+       </div>
      </div>
   );
 };

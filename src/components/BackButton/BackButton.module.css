@@ -6,3 +6,10 @@
     top: 53px;
     cursor: pointer;
 }
+
+@media screen and (max-width: 390px) {
+    .container{
+        left: 10px;
+        top: 31px;
+    }
+}

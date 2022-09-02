@@ -1,0 +1,537 @@
+.userForm {
+    position: relative;
+    width: 1920px;
+    height: 1327px;
+    background: #F7F7F7;
+}
+
+.nav {
+    position: absolute;
+    display: flex;
+    gap: 100px;
+    top: 75px;
+    left:685px;
+}
+.line {
+    position: absolute;
+    width: 185px;
+    height: 0px;
+    left: 690px;
+    top: 130px;
+
+    border-bottom: 2px solid #000000;
+}
+
+.form {
+    position: absolute;
+    height: 810px;
+    left: 347px;
+    right: 347px;
+    top: 157px;
+    padding: 100px 150px;
+    background: #FFFFFF;
+    border-radius: 18px;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.userName {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+    gap: 8px;
+
+    position: relative;
+    width: 455px;
+    height: 134px;
+    top: 0px;
+}
+.name {
+    width: 407px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.nameInput{
+    box-sizing: border-box;
+
+    width: 407px;
+    height: 60px;
+
+    /* ლურჯი/400 */
+
+    border: 1.8px solid #8AC0E2;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.nameInput[type=text] {
+    left: 22px;
+    right: 16px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+
+    color: rgba(0, 0, 0, 0.6);
+}
+.nameHint{
+    width: 407px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+
+    /* შავი/500 */
+
+    color: #2E2E2E;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.userSurname {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+    gap: 8px;
+    position: relative;
+    width: 456px;
+    height: 134px;
+    top: 0px;
+}
+
+.surname{
+    width: 408px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.surnameInput{
+    box-sizing: border-box;
+
+    width: 408px;
+    height: 60px;
+
+    /* ლურჯი/400 */
+
+    border: 1.8px solid #8AC0E2;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.surnameInput[type=text]{
+    left: 22px;
+    right: 16px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.surnameHint {
+    width: 408px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+
+    /* შავი/500 */
+
+    color: #2E2E2E;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.team{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+
+    position: absolute;
+    width: 926px;
+    height: 76px;
+    left: calc(50% - 926px/2);
+    top: 258px;
+}
+.selectTeam {
+    width: 878px;
+    height: 60px;
+
+    background: #EBEBEB;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    border: none;
+}
+
+.selectTeams{
+    position: absolute;
+    height: 21px;
+    left: 16px;
+    right: 83px;
+    top: calc(50% - 21px/2 - 0.5px);
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+    background-color: white;
+    color: #000000;
+}
+
+.position {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+
+    position: absolute;
+    width: 926px;
+    height: 76px;
+    left: calc(50% - 926px/2);
+    top: 371px;
+}
+.selectPosition {
+    width: 878px;
+    height: 60px;
+
+    background: #EBEBEB;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.selectPositions{
+    position: absolute;
+    height: 21px;
+    left: 16px;
+    right: 83px;
+    top: calc(50% - 21px/2 - 0.5px);
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+    background-color: white;
+    color: #000000;
+}
+
+.email{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+    gap: 8px;
+
+    position: absolute;
+    width: 926px;
+    height: 134px;
+    left: calc(50% - 926px/2);
+    top: 482px;
+}
+.emailLabel{
+    width: 878px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.emailInput{
+    box-sizing: border-box;
+
+    width: 878px;
+    height: 60px;
+
+    /* ლურჯი/400 */
+
+    border: 1.8px solid #8AC0E2;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.emailInput[type=text]{
+    position: absolute;
+    height: 21px;
+    left: 16px;
+    right: 16px;
+    top: calc(50% - 21px/2 - 0.5px);
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.emailHint{
+    width: 878px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+
+    /* შავი/500 */
+
+    color: #2E2E2E;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.phone {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+    gap: 8px;
+
+    position: absolute;
+    width: 926px;
+    height: 134px;
+    left: calc(50% - 926px/2);
+    top: 648px;
+}
+
+.phoneLabel{
+    width: 878px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.phoneInput{
+    box-sizing: border-box;
+
+    width: 878px;
+    height: 60px;
+
+    /* ლურჯი/400 */
+
+    border: 1.8px solid #8AC0E2;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.phoneInput[type=text]{
+    left: 16px;
+    right: 16px;
+    top: calc(50% - 21px/2 - 0.5px);
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+
+    color: rgba(0, 0, 0, 0.6);
+}
+.phoneHint{
+    width: 878px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+
+    /* შავი/500 */
+
+    color: #2E2E2E;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}

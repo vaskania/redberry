@@ -19,7 +19,7 @@ export const LaptopDetail = () => {
   return (
      <div className={styles.container}>
        <BackButton onClick={back} />
-       <h3>ლეპტოპის ინფო</h3>
+       <h3 className={styles.header}>ლეპტოპის ინფო</h3>
        <LaptopDetails data={data}/>
      </div>
   )

@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import useFetch from "../hooks/useFetch";
-import { AppContext } from "../context/app.context";
+import useFetch from "../../hooks/useFetch";
+import { AppContext } from "../../context/app.context";
 import { useNavigate } from "react-router-dom";
-import { fileNameRegEx } from '../utils/index'
+import { fileNameRegEx } from '../../utils'
 import axios from "axios";
 
 export const LaptopForm = () => {

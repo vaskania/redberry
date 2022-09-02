@@ -4,7 +4,8 @@ const Button = ({ children, ...props }) => {
 
   return (
      <button className={styles.button} style={{ ...props }} onClick={props.onClick}>
-       <span className={styles.text} style={{ ...props }}>{children}</span>
+         {children}
+       {/*<span className={styles.text} style={{ ...props }}>{children}</span>*/}
      </button>
   );
 };
