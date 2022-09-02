@@ -16,7 +16,7 @@ export const UserForm = () => {
     token: process.env.REACT_APP_TOKEN
   }
   const url = process.env.REACT_APP_URL
-  const { addNewData } = useContext(AppContext)
+  const { data, addNewData } = useContext(AppContext)
   const [teamName, setTeamName] = useState('')
   const [positionName, setPositionName] = useState('')
   const [filteredPositionOptions, setFilteredPositionOptions] = useState([])
@@ -32,8 +32,8 @@ export const UserForm = () => {
       ...userForm,
       [e.target.name]: value.trim()
     });
-
   }
+
 
   const addUser = (e) => {
     e.preventDefault()
@@ -129,6 +129,8 @@ export const UserForm = () => {
     })
 
   }
+
+  console.log(data)
 
   return (
      <>

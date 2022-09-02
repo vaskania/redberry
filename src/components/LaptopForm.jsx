@@ -25,6 +25,7 @@ export const LaptopForm = () => {
   const [laptopDetails, setLaptopDetails] = useState(initialState)
   const { data, toggleActive, addNewData } = useContext(AppContext)
   const navigate = useNavigate()
+  console.log(data)
   const {
     laptop_name,
     laptop_cpu_cores,
@@ -129,6 +130,7 @@ export const LaptopForm = () => {
   }, []);
 
   const sendData = async (data) => {
+    console.log(data)
     try {
       const res = await axios.post(`${process.env.REACT_APP_URL}/laptop/create`, data,
          { headers: { "Content-Type": "multipart/form-data" } }
