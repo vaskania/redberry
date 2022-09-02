@@ -23,22 +23,53 @@ const LaptopDetails = ({ data }) => {
            <span>{user.phone_number}</span>
          </div>
        </div>
-       {/*<div>*/}
-       {/*  <h6>ლეპტოპის სახელი:</h6>*/}
-       {/*  <span>{laptop.name}</span>*/}
-       {/*  <h6>ლეპტოპის ბრენდი:</h6>*/}
-       {/*  <span>{laptop.brand_id}</span>*/}
-       {/*  <h6>RAM:</h6>*/}
-       {/*  <span>{laptop.ram}</span>*/}
-       {/*  <h6>მეხსიერების ტიპი:</h6>*/}
-       {/*  <span>{laptop.hard_drive_type}</span>*/}
-       {/*  <h6>CPU:</h6>*/}
-       {/*  <span>{laptop.cpu.name}</span>*/}
-       {/*  <h6>CPU-ს ბირთვი:</h6>*/}
-       {/*  <span>{laptop.cpu.cores}</span>*/}
-       {/*  <h6>CPU-ს ნაკადი:</h6>*/}
-       {/*  <span>{laptop.cpu.threads}</span>*/}
-       {/*</div>*/}
+
+       <div className={styles.line1}/>
+
+       <div className={styles.laptopDetails1}>
+
+         <div className={styles.left}>
+
+           <div className={styles.fields}>
+             <span>ლეპტოპის სახელი:</span>
+             <span>ლეპტოპის ბრენდი:</span>
+             <span>RAM:</span>
+             <span>მეხსიერების ტიპი:</span>
+           </div>
+
+           <div className={styles.info}>
+             <span>{laptop.name}</span>
+             <span>{laptop.brand_id}</span>
+             <span>{laptop.ram}</span>
+             <span>{laptop.hard_drive_type}</span>
+           </div>
+         </div>
+
+
+         <div className={styles.right}>
+           <div className={styles.fields}>
+             <span>CPU:</span>
+             <span>CPU-ს ბირთვი:</span>
+             <span>CPU-ს ნაკადი:</span>
+           </div>
+           <div className={styles.info}>
+             <span>{laptop.cpu.name}</span>
+             <span>{laptop.cpu.cores}</span>
+             <span>{laptop.cpu.threads}</span>
+           </div>
+         </div>
+       </div>
+
+       <div className={styles.line2}/>
+
+       <div className={styles.laptopDetails2}>
+         <div className={styles.left}>
+
+         </div>
+         <div className={styles.right}>
+
+         </div>
+       </div>
        {/*<div>*/}
        {/*  <h6>ლეპტოპის მდგომარეობა:</h6>*/}
        {/*  <span>{laptop.state}</span>*/}

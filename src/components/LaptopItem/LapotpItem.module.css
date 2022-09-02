@@ -1,7 +1,7 @@
 .container {
     box-sizing: border-box;
     position: relative;
-    width: 563px;
+    max-width: 563px;
     height: 205px;
     /*left: 100px;*/
     /*top: 197px;*/

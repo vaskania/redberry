@@ -3,7 +3,6 @@
     border: 1px solid red;
     top: 200px;
     width: 90%;
-    height: 100vh;
     left: 100px;
 }
 
@@ -80,4 +79,70 @@
 
     color: #797979;
 }
+
+.line1 {
+    position: absolute;
+    width: 1254px;
+    height: 0px;
+    left: 250px;
+    right: 371px;
+    top: 607px;
+
+    /* შავი/300 */
+
+    border: 1px solid #A5A5A5;
+}
+
+.laptopDetails1 {
+    position: absolute;
+    width: 1154px;
+    height: 200px;
+    left: 250px;
+    top: 661px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left {
+    width: 50%;
+    height: 100%;
+    display: flex;
+}
+
+.right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    gap: 100px;
+    padding-left: 120px;
+}
+
+.line2 {
+    position: absolute;
+    width: 1254px;
+    height: 0px;
+    left: 250px;
+    right: 371px;
+    top: 900px;
+
+    /* შავი/300 */
+
+    border: 1px solid #A5A5A5;
+}
+
+.laptopDetails2 {
+    position: absolute;
+    width: 1154px;
+    height: 200px;
+    left: 250px;
+    top: 945px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid red;
+}
+
 

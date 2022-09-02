@@ -5,7 +5,7 @@
     height: 1080px;
     left: -18px;
     top: 0px;
-
+    margin: auto;
     background: #4A4A4A;
 }
 
@@ -15,7 +15,7 @@
     height: 537px;
     left: 536px;
     top: 271px;
-
+    margin: auto;
     background: #FFFFFF;
     border-radius: 8px;
 }
