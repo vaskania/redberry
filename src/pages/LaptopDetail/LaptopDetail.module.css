@@ -1,0 +1,28 @@
+.container {
+    position: relative;
+    width: 1920px;
+    height: 1207px;
+
+    background: #FFFFFF;
+}
+
+h3 {
+    position: absolute;
+    width: 309px;
+    height: 21px;
+    left: 806px;
+    top: 76px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 21px;
+    /* identical to box height, or 62% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}

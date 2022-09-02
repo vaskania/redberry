@@ -1,0 +1,83 @@
+.container {
+    position: absolute;
+    border: 1px solid red;
+    top: 200px;
+    width: 90%;
+    height: 100vh;
+    left: 100px;
+}
+
+.img {
+    position: absolute;
+    width: 577px;
+    height: 342px;
+    left: 250px;
+    top: 181px;
+    border: 1px solid black;
+    /*background: url(.jpg);*/
+}
+
+.userDetails {
+    position: absolute;
+    width: 577px;
+    height: 342px;
+    right: 250px;
+    top: 181px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fields {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    left: 0;
+}
+
+.fields span {
+    position: relative;
+    margin: 10px 10px;
+    display: block;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27px;
+
+    /* შავი/500 */
+
+    color: #2E2E2E;
+}
+
+.info {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.info span {
+    position: relative;
+    margin: 10px 0px;
+    display: block;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    /* or 123% */
+
+
+    /* შავი/400 */
+
+    color: #797979;
+}
+

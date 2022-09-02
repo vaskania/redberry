@@ -1,6 +1,4 @@
-/* Component 2 */
-
-.button2 {
+.button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -12,14 +10,14 @@
     width: 387px;
     height: 60px;
     left: calc(50% - 387px / 2 - 0.5px);
-    top: 873px;
-
     background: #62A1EB;
     border-radius: 8px;
+    border: none;
+    cursor: pointer;
 }
 
-.button2 span {
-    width: 178px;
+.text {
+    width: 223px;
     height: 24px;
 
     font-family: 'Helvetica Neue';
@@ -29,12 +27,19 @@
     line-height: 24px;
 
     color: #FFFFFF;
-}
 
-.button2:hover {
+
+    /* Inside auto layout */
+
     flex: none;
     order: 0;
     flex-grow: 0;
 }
 
+@media screen and (max-width: 390px) {
+    .button {
+        width: 358px;
+        left: calc(50% - 358px / 2);
+    }
+}
 

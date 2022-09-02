@@ -1,0 +1,20 @@
+.logo {
+    position: absolute;
+    width: 112px;
+    height: 18px;
+    left: calc(50% - 112px / 2);
+    top: 79px;
+
+    background: url('../../assets/LOGO-02.png');
+}
+
+@media screen and (max-width: 390px) {
+    .logo {
+        position: absolute;
+        width: 112px;
+        height: 18px;
+        left: calc(50% - 112px / 2);
+        top: 67px;
+
+    }
+}

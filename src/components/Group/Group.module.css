@@ -1,0 +1,21 @@
+.image {
+    position: absolute;
+    width: 781px;
+    height: 482px;
+    left: 589px;
+    top: 182px;
+
+    background: url('../../assets/Group1.png');
+}
+
+@media screen and (max-width: 390px) {
+    .image {
+        position: absolute;
+        left: 15.64%;
+        right: 15.49%;
+        top: 23.93%;
+        bottom: 34.72%;
+
+        background: url('../../assets/Group2.png') no-repeat;
+    }
+}
