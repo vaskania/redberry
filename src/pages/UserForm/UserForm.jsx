@@ -133,14 +133,14 @@ export const UserForm = () => {
 
   }
 
-  console.log(data)
 
   return (
      <div className={styles.userForm}>
        <BackButton onClick={()=>navigate('/')}/>
        <div className={styles.nav}>
-         <div><h3>თანამშრომლის ინფო</h3></div>
-         <div><h3>ლეპტოპის მახასიათებლები</h3></div>
+         <div ><h3>თანამშრომლის ინფო</h3></div>
+         <div className={styles.laptopHide}><h3>ლეპტოპის მახასიათებლები</h3></div>
+         <h6 className={styles.pages}>1/2</h6>
        </div>
        <div className={styles.line}/>
        <div className={styles.form}>
@@ -190,7 +190,7 @@ export const UserForm = () => {
              <label className={styles.phoneHint}>უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს</label>
            </div>
 
-           <Button top="869px" width="176px" left="875px" >შემდეგი</Button>
+           <Button top="809px" width="176px" left="875px">შემდეგი</Button>
          </form>
        </div>
       <Logo />

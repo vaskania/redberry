@@ -201,7 +201,6 @@
         position: absolute;
         height: 0px;
         left: 16px;
-        /*right: 16px;*/
         top: 367px;
         width: 340px;
         /* შავი/300 */
@@ -237,7 +236,7 @@
         left: 16px;
         right: 16px;
         top: 572px;
-
+        width: 340px;
         /* შავი/300 */
         border: 0.6px solid #A5A5A5;
     }

@@ -1,0 +1,1054 @@
+.laptopForm{
+    position: relative;
+    width: 1920px;
+    height: 1921px;
+
+    background: #F7F7F7;
+}
+
+.nav {
+    position: absolute;
+    display: flex;
+    gap: 100px;
+    top: 75px;
+    left:685px;
+}
+.pages{
+    display: none;
+}
+
+.line{
+    position: absolute;
+    width: 263px;
+    height: 0px;
+    left: 973px;
+    top: 130px;
+
+    border-bottom: 2px solid #000000;
+}
+
+.form {
+    position: absolute;
+    height: 1290px;
+    left: 347px;
+    right: 347px;
+    top: 157px;
+    padding: 100px 150px;
+    background: #FFFFFF;
+    border-radius: 18px;
+}
+
+.img {
+    position: absolute;
+    height: 423px;
+    left: 174px;
+    right: 174px;
+    top: 68px;
+
+    background: #F7F7F7;
+    /* ლურჯი/700 */
+
+    border: 2px dashed #4386A9;
+    border-radius: 18px;
+}
+
+.imgLabel{
+    position: absolute;
+    width: 195px;
+    height: 76px;
+    left: calc(50% - 195px/2 + 0.5px);
+    top: 85px;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 38px;
+    /* or 190% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* ლურჯი/700 */
+
+    color: #4386A9;
+}
+
+.imgBtn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 60px;
+    gap: 20px;
+
+    position: absolute;
+    width: 233px;
+    height: 60px;
+    left: calc(50% - 333px/2 - 0.5px);
+    top: 206px;
+
+    background: #62A1EB;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.imgBtnText {
+    width: 90px;
+    height: 24px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.laptopName{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+    gap: 8px;
+
+    position: absolute;
+    width: 455px;
+    height: 134px;
+    left: 150px;
+    top: 533px;
+}
+
+.laptopNameLabel{
+    width: 407px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.laptopNameInput{
+    box-sizing: border-box;
+
+    width: 407px;
+    height: 60px;
+
+    /* ლურჯი/400 */
+
+    border: 1.8px solid #8AC0E2;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.laptopNameInput:focus{
+    left: 16px;
+    right: 16px;
+    top: calc(50% - 21px/2 - 0.5px);
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+    border: 2px solid red;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.laptopNameHint{
+    width: 407px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+
+    /* შავი/500 */
+
+    color: #2E2E2E;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.laptopBrand{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+
+    position: absolute;
+    width: 456px;
+    height: 76px;
+    left: calc(50% - 456px/2 + 235px);
+    top: 563px;
+}
+.selectLaptopBrand{
+
+    width: 408px;
+    height: 60px;
+
+    background: #EBEBEB;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    border: none;
+}
+.selectLaptopBrands{
+    position: absolute;
+    height: 21px;
+    left: 16px;
+    right: 83px;
+    top: calc(50% - 21px/2 - 0.5px);
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+
+    color: #000000;
+}
+
+.line1{
+    position: absolute;
+    height: 0px;
+    left: 174px;
+    right: 174px;
+    top: 711px;
+
+    /* შავი/200 */
+
+    border: 1px solid #C7C7C7;
+}
+
+.cpu{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+
+    position: absolute;
+    width: 325px;
+    height: 76px;
+    left: calc(50% - 325px/2 - 300.5px);
+    top: 782px;
+}
+.selectCpu{
+    width: 277px;
+    height: 60px;
+
+    background: #EBEBEB;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    border:none;
+}
+.selectCpus{
+    position: absolute;
+    height: 21px;
+    left: 16px;
+    right: 83px;
+    top: calc(50% - 21px/2 - 0.5px);
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+
+    color: #000000;
+}
+
+.cpuCores{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+    gap: 8px;
+
+    position: absolute;
+    width: 324px;
+    height: 134px;
+    left: calc(50% - 324px/2);
+    top: 753px;
+}
+
+.cpuCoresLabel{
+    width: 276px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.cpuCoresInput{
+    box-sizing: border-box;
+
+    width: 276px;
+    height: 60px;
+
+    /* ლურჯი/400 */
+
+    border: 1.8px solid #8AC0E2;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.cpuCoresInput[type=text]{
+    position: absolute;
+    height: 21px;
+    left: 16px;
+    right: 16px;
+    top: calc(50% - 21px/2 - 0.5px);
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+
+    color: rgba(0, 0, 0, 0.6);
+}
+.cpuCoresHint{
+    width: 276px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+
+    /* შავი/500 */
+
+    color: #2E2E2E;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.cpuThreads{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+    gap: 8px;
+
+    position: absolute;
+    width: 324px;
+    height: 134px;
+    left: calc(50% - 324px/2 + 300px);
+    top: 753px;
+}
+.cpuThreadsLabel{
+    width: 276px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.cpuThreadsInput{
+    box-sizing: border-box;
+
+    width: 276px;
+    height: 60px;
+
+    /* ლურჯი/400 */
+
+    border: 1.8px solid #8AC0E2;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.cpuThreadsInput[type=text]{
+    position: absolute;
+    height: 21px;
+    left: 16px;
+    right: 16px;
+    top: calc(50% - 21px/2 - 0.5px);
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+
+    color: rgba(0, 0, 0, 0.6);
+}
+.cpuThreadsHint{
+    width: 276px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+
+    /* შავი/500 */
+
+    color: #2E2E2E;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.ram{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+    gap: 8px;
+
+    position: absolute;
+    width: 455px;
+    height: 134px;
+    left: calc(50% - 455px/2 - 235.5px);
+    top: 920px;
+}
+.ramLabel{
+    width: 407px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.ramInput{
+    box-sizing: border-box;
+
+    width: 407px;
+    height: 60px;
+
+    /* ლურჯი/400 */
+
+    border: 1.8px solid #8AC0E2;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.ramInput :focus {
+    position: absolute;
+    height: 21px;
+    left: 16px;
+    right: 16px;
+    top: calc(50% - 21px/2 - 0.5px);
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+
+    color: rgba(0, 0, 0, 0.6);
+}
+.ramHint{
+    width: 407px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+
+    /* შავი/500 */
+
+    color: #2E2E2E;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.hdContainer{
+    position: absolute;
+    top:925px;
+    left:650px;
+    width: 300px;
+    height: 100px;
+}
+
+.hdType{
+    position: relative;
+    width: 163px;
+    height: 21px;
+    left: 0px;
+    top: 0px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.ssdType{
+    position: relative;
+    top: 25px;
+    width: 20px;
+    height: 20px;
+
+    /* ლურჯი/600 */
+
+    border: 2px solid #4D9AC3;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.ssdLabel{
+    position: relative;
+    top: 0px;
+    left: 50px;
+    width: 33px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.hddType{
+    position: relative;
+    top: -23px;
+    left: 100px;
+    width: 20px;
+    height: 20px;
+
+    /* ლურჯი/600 */
+
+    border: 2px solid #4D9AC3;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.hddLabel{
+    width: 35px;
+    height: 21px;
+    position: relative;
+    top:-49px;
+    left: 150px;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.line2{
+    position: absolute;
+    height: 0px;
+    left: 174px;
+    right: 174px;
+    top: 1098px;
+
+    /* შავი/200 */
+
+    border: 1px solid #C7C7C7;
+}
+.date{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+    gap: 8px;
+
+    position: absolute;
+    width: 455px;
+    height: 105px;
+    left: calc(50% - 455px/2 - 235.5px);
+    top: 1140px;
+}
+
+.dateLabel{
+    width: 407px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.dateInput{
+    box-sizing: border-box;
+
+    width: 407px;
+    height: 60px;
+
+    /* ლურჯი/400 */
+
+    border: 1.8px solid #8AC0E2;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.dateInput:focus{
+    position: absolute;
+    height: 21px;
+    left: 16px;
+    right: 16px;
+    top: calc(50% - 21px/2 - 0.5px);
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.price{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+    gap: 8px;
+
+    position: absolute;
+    width: 456px;
+    height: 134px;
+    left: calc(50% - 456px/2 + 235px);
+    top: 1140px;
+}
+.priceLabel{
+    width: 408px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.priceInput{
+    box-sizing: border-box;
+
+    width: 408px;
+    height: 60px;
+
+    /* ლურჯი/400 */
+
+    border: 1.8px solid #8AC0E2;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.priceInput:focus{
+    position: absolute;
+    height: 21px;
+    left: 16px;
+    right: 83px;
+    top: calc(50% - 21px/2 - 0.5px);
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+.priceHint{
+    width: 408px;
+    height: 21px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+
+    /* შავი/500 */
+
+    color: #2E2E2E;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.condition{
+    position: absolute;
+    top:1300px;
+    left: 170px;
+    width:300px;
+    height: 100px;
+}
+.conditionLabel{
+    position: relative;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+.new{
+    box-sizing: border-box;
+
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top:10px;
+    /* ლურჯი/600 */
+
+    border: 2px solid #4D9AC3;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.newLabel{
+    width: 50px;
+    height: 21px;
+    position: relative;
+    top: -13px;
+    left:50px;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.used{
+
+    box-sizing: border-box;
+    position: relative;
+    top:-38px;
+    left:130px;
+    width: 20px;
+    height: 20px;
+
+    /* ლურჯი/600 */
+
+    border: 2px solid #4D9AC3;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.usedLabel{
+    width: 72px;
+    height: 21px;
+    position: relative;
+    top:-60px;
+    left:200px;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* identical to box height, or 131% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.btnBack{
+    position: absolute;
+    width: 45px;
+    height: 21px;
+    left: 174px;
+    top: 1417px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height, or 117% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.08em;
+    color: #62A1EB;
+}

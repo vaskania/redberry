@@ -4,6 +4,10 @@ import { AppContext } from "../../context/app.context";
 import { useNavigate } from "react-router-dom";
 import { fileNameRegEx } from '../../utils'
 import axios from "axios";
+import BackButton from "../../components/BackButton/BackButton";
+import styles from "./LaptopForm.module.css";
+import Button from "../../components/Button/Button";
+import Logo from "../../components/Logo1/Logo";
 
 export const LaptopForm = () => {
   const initialState = {
@@ -175,53 +179,102 @@ export const LaptopForm = () => {
   if (error) console.log(error)
 
   return (
-     <>
+     <div className={styles.laptopForm}>
+       <BackButton onClick={()=>navigate('/user/create')}/>
+       <div className={styles.nav}>
+         <div ><h3>თანამშრომლის ინფო</h3></div>
+         <div className={styles.laptopHide}><h3>ლეპტოპის მახასიათებლები</h3></div>
+         <h6 className={styles.pages}>2/2</h6>
+       </div>
+       <div className={styles.line}/>
+
+       <div className={styles.form}>
        <form onSubmit={handleSubmit}>
-         <input type='file' onChange={selectFile}/>
+         <div className={styles.img}>
+           <label className={styles.imgLabel}>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</label>
+           {/*<input className={styles.imgBtn} type='file' onChange={selectFile}/>*/}
+           <div className={styles.imgBtn}><span className={styles.imgBtnText}>ატვირთე</span></div>
+         </div>
 
-         <label>ლეპტოპის სახელი</label>
-         <input type='text' name="laptop_name" value={laptop_name} onChange={handleChange}/>
+         <div className={styles.laptopName}>
+           <label className={styles.laptopNameLabel}>ლეპტოპის სახელი</label>
+           <input className={styles.laptopNameInput} type='text' name="laptop_name" value={laptop_name} onChange={handleChange} placeholder="HP"/>
+           <label className={styles.laptopNameHint}>ლათინური ასოები, ციპრები, !@#$%^&*()_+</label>
+         </div>
 
-         <select value={laptop_brand_id} onChange={selectBrand}>
-           <option value=''>ლეპტოპის ბრენდი</option>
-           {/*<option>{brandName ? `${brandName}` : "ლეპტოპის ბრენდი"}</option>*/}
-           {brands?.data?.map(brand => <option key={brand?.id} value={brand?.id}>{brand.name}</option>)}
-         </select>
-         <select value={laptop_cpu} onChange={selectCpu}>
-           <option value=''>CPU</option>
-           {cpus?.data?.map(cpu => <option key={cpu?.id} value={cpu?.id}>{cpu.name}</option>)}
-         </select>
-         {/*/!*must contain only numbers   *!/*/}
-         <label>CPU-ს ბირთვი</label>
-         <input type='number' name='laptop_cpu_cores' value={laptop_cpu_cores} onChange={handleChange}/>
-         {/*/!*must contain only numbers     *!/*/}
-         <label>CPU-ს ნაკადი</label>
-         <input type='number' name='laptop_cpu_threads' value={laptop_cpu_threads} onChange={handleChange}/>
-         {/*/!*must contain only numbers     *!/*/}
-         <label>RAM</label>
-         <input type='number' name="laptop_ram" value={laptop_ram} onChange={handleChange}/>
-         <label>მეხსიერების ტიპი</label>
-         <input type="radio" name='laptop_hard_drive_type' checked={laptop_hard_drive_type === 'SSD'} value='SSD'
-                onChange={handleChange}/> <label>SSD</label>
-         <input type="radio" name='laptop_hard_drive_type' value='HDD' checked={laptop_hard_drive_type === "HDD"}
-                onChange={handleChange}/> <label>HDD</label>
-         <label>შეძენის რიცხვი (არჩევითი)</label>
-         <input
-            type='date' name="laptop_purchase_date"
-            onChange={handleChange}
-            value={laptop_purchase_date}
-         />
-         {/*must contain only numbers   */}
-         <label>ლეპტოპის ფასი</label>
-         <input type='number' name='laptop_price' value={laptop_price} onChange={handleChange}/>
-         <label>ლეპტოპის მდგომარეობა</label>
-         <input type="radio" name='laptop_state' value='new' checked={laptop_state === 'new'} onChange={handleChange}/>
-         <label>ახალი</label>
-         <input type="radio" name='laptop_state' value='used' checked={laptop_state === 'used'}
-                onChange={handleChange}/> <label>მეორადი</label>
-         <button onChange={toggleActive}>უკან</button>
-         <button type='submit'>დამახსოვრება</button>
+        <div className={styles.laptopBrand}>
+          <select className={styles.selectLaptopBrand} value={laptop_brand_id} onChange={selectBrand}>
+            <option value=''>ლეპტოპის ბრენდი</option>
+            {/*<option>{brandName ? `${brandName}` : "ლეპტოპის ბრენდი"}</option>*/}
+            {brands?.data?.map(brand => <option className={styles.selectLaptopBrands} key={brand?.id} value={brand?.id}>{brand.name}</option>)}
+          </select>
+        </div>
+
+         <div className={styles.line1}/>
+
+         <div className={styles.cpu}>
+           <select className={styles.selectCpu} value={laptop_cpu} onChange={selectCpu}>
+             <option value=''>CPU</option>
+             {cpus?.data?.map(cpu => <option className={styles.selectCpus} key={cpu?.id} value={cpu?.id}>{cpu.name}</option>)}
+           </select>
+         </div>
+         <div className={styles.cpuCores}>
+           <label className={styles.cpuCoresLabel}>CPU-ს ბირთვი</label>
+           <input className={styles.cpuCoresInput} type='number' name='laptop_cpu_cores' value={laptop_cpu_cores} onChange={handleChange} placeholder="14"/>
+           <label className={styles.cpuCoresHint}>მხოლოდ ციფრები</label>
+         </div>
+
+
+         <div className={styles.cpuThreads}>
+           <label className={styles.cpuThreadsLabel}>CPU-ს ნაკადი</label>
+           <input className={styles.cpuThreadsInput} type='number' name='laptop_cpu_threads' value={laptop_cpu_threads} onChange={handleChange} placeholder="365"/>
+           <label className={styles.cpuThreadsHint}>მხოლოდ ციფრები</label>
+         </div>
+
+         <div className={styles.ram}>
+           <label className={styles.ramLabel}>RAM</label>
+           <input className={styles.ramInput} type='number' name="laptop_ram" value={laptop_ram} onChange={handleChange} placeholder="16"/>
+           <label className={styles.ramHint}>მხოლოდ ციფრები</label>
+         </div>
+
+         <div className={styles.hdContainer}>
+           <label className={styles.hdType}>მეხსიერების ტიპი</label>
+           <input className={styles.ssdType} type="radio" name='laptop_hard_drive_type' id="ssd" checked={laptop_hard_drive_type === 'SSD'} value='SSD'
+                  onChange={handleChange}/> <label htmlFor="ssd" className={styles.ssdLabel}>SSD</label>
+           <input className={styles.hddType} type="radio" name='laptop_hard_drive_type' id="hdd" value='HDD' checked={laptop_hard_drive_type === "HDD"}
+                  onChange={handleChange}/> <label htmlFor='hdd' className={styles.hddLabel}>HDD</label>
+         </div>
+
+         <div className={styles.line2}/>
+
+         <div className={styles.date}>
+           <label className={styles.dateLabel}>შეძენის რიცხვი (არჩევითი)</label>
+           <input className={styles.dateInput}
+                  type='date' name="laptop_purchase_date"
+                  onChange={handleChange}
+                  value={laptop_purchase_date}
+           />
+         </div>
+
+         <div className={styles.price}>
+           <label className={styles.priceLabel}>ლეპტოპის ფასი</label>
+           <input className={styles.priceInput} type='number' name='laptop_price' value={laptop_price} onChange={handleChange} placeholder="0000"/>
+           <label className={styles.priceHint}>მხოლოდ ციფები</label>
+         </div>
+
+         <div className={styles.condition}>
+           <label className={styles.conditionLabel}>ლეპტოპის მდგომარეობა</label>
+           <input className={styles.new} type="radio" name='laptop_state' id="new" value='new' checked={laptop_state === 'new'} onChange={handleChange}/>
+           <label className={styles.newLabel} htmlFor="new">ახალი</label>
+           <input className={styles.used} id="used" type="radio" name='laptop_state' value='used' checked={laptop_state === 'used'}
+                  onChange={handleChange}/> <label className={styles.usedLabel} htmlFor="used">მეორადი</label>
+         </div>
+
+         <div className={styles.btnBack} onChange={toggleActive}>უკან</div>
+         <Button type='submit' top="1397px" left="840px" width="219px">დამახსოვრება</Button>
        </form>
-     </>
+         <Logo top="1500px"/>
+       </div>
+     </div>
   )
 }

@@ -5,6 +5,7 @@ import { LaptopDetail } from "../pages/LaptopDetail/LaptopDetail";
 import { SuccessPage } from "../pages/SuccessPage/SuccessPage";
 import { LaptopForm } from "../pages/LaptopForm/LaptopForm";
 import { UserForm } from "../pages/UserForm/UserForm";
+import PageNotFound from "../pages/PageNotFound/PageNotFound";
 
 export const Router = () => (
    <Routes>
@@ -14,6 +15,7 @@ export const Router = () => (
      <Route path='/laptops' element={<LaptopsList/>}/>
      <Route path='/laptop/:id' element={<LaptopDetail/>}/>
      <Route path='/success' element={<SuccessPage/>}/>
+     <Route path="*" element={<PageNotFound />} />
    </Routes>
 )
 

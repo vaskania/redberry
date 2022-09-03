@@ -11,6 +11,7 @@
 @media screen and (max-width: 390px) {
     .logo {
         position: absolute;
+        /*margin:auto;*/
         width: 112px;
         height: 18px;
         left: calc(50% - 112px / 2);

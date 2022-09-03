@@ -3,7 +3,13 @@
     width: 85px;
     height: 85px;
     left: calc(50% - 85px/2 - 0.5px);
-    top: 1197px;
+    top: 1097px;
 
     background: url('../../assets/LOGO-01.png');
+}
+
+@media screen and (max-width: 390px) {
+    .logo{
+        display: none;
+    }
 }
