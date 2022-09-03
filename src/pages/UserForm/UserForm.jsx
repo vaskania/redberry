@@ -7,6 +7,7 @@ import styles from './UserForm.module.css'
 import BackButton from "../../components/BackButton/BackButton";
 import Logo from '../../components/Logo1/Logo'
 import Button from "../../components/Button/Button";
+import Input from "../../components/Input/Input";
 
 export const UserForm = () => {
   const initialState = {
@@ -28,21 +29,19 @@ export const UserForm = () => {
   const { name, surname, email, phone_number } = userForm;
   const navigate = useNavigate()
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-
+  const handleChange = (data) => {
+    const {name, value} = data
     setUserForm({
       ...userForm,
-      [e.target.name]: value.trim()
+      [name]: value.trim()
     });
   }
-
 
   const addUser = (e) => {
     e.preventDefault()
     try {
       if (!geoRegEx.test(userForm.name)) throw new Error('not georgian')
-      if (!geoRegEx.test(userForm.surname)) throw new Error('not georgian')
+      if (!geoRegEx.test(userForm.surname)) throw new Error('არა')
       if (!emailRegEx.test(userForm.email)) throw new Error('not valid email')
       if (!phoneNumberRegEx.test(userForm.phone_number)) throw new Error('not valid phone number')
       if (typeof userForm.team_id !== "number") throw new Error('Please select option')
@@ -133,7 +132,6 @@ export const UserForm = () => {
 
   }
 
-
   return (
      <div className={styles.userForm}>
        <BackButton onClick={()=>navigate('/')}/>
@@ -147,17 +145,28 @@ export const UserForm = () => {
          <form onSubmit={addUser}>
 
            <div className={styles.userInfo}>
-             <div className={styles.userName}>
-               <label className={styles.name}>სახელი</label>
-               <input className={styles.nameInput} type="text" name="name" value={name} onChange={handleChange} placeholder="გრიშა"/>
-               <label className={styles.nameHint}>მინიმუმ 2 სიმბოლო, ქართული ასოები</label>
-             </div>
-
-             <div className={styles.userSurname}>
-               <label className={styles.surname}>გვარი</label>
-               <input className={styles.surnameInput} type="text" name="surname" value={surname} onChange={handleChange} placeholder="ბაგრატიონი"/>
-               <label className={styles.surnameHint}>მინიმუმ 2 სიმბოლო, ქართული ასოები</label>
-             </div>
+              <Input
+                 title="სახელი"
+                 type="text"
+                 name="name"
+                 value={name}
+                 placeholder="გრიშა"
+                 onHandleChange={handleChange}
+                 hint="მინიმუმ 2 სიმბოლო, ქართული ასოები"
+                 top="0px"
+                 left="0px"
+             />
+             <Input
+                 title="გვარი"
+                 type="text"
+                 name="surname"
+                 value={surname}
+                 placeholder="ბაგრატიონი"
+                 onHandleChange={handleChange}
+                 hint="მინიმუმ 2 სიმბოლო, ქართული ასოები"
+                 top="0px"
+                 left="550px"
+             />
            </div>
 
 
@@ -177,19 +186,31 @@ export const UserForm = () => {
             < /select>
           </div>
 
+           <Input
+               title="მეილი"
+               type="email"
+               name="email"
+               value={email}
+               placeholder="grisha666@redberry.ge"
+               onHandleChange={handleChange}
+               hint="უნდა მთავრდებოდეს @redberry.ge-ით"
+               top="500px"
+               left="150px"
+               width="878px"
+           />
 
-           <div className={styles.email}>
-             <label className={styles.emailLabel}>მეილი</label>
-             <input className={styles.emailInput} type='email' value={email} name='email' onChange={handleChange} placeholder="grisha666@redberry.ge"/>
-             <label className={styles.emailHint}>უნდა მთავრდებოდეს @redberry.ge-ით</label>
-           </div>
-
-           <div className={styles.phone}>
-             <label className={styles.phoneLabel}>ტელეფონის ნომერი</label>
-             <input className={styles.phoneInput} type="text" value={phone_number} name='phone_number' onChange={handleChange} placeholder="+995 590 00 07 01"/>
-             <label className={styles.phoneHint}>უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს</label>
-           </div>
-
+           <Input
+               title="ტელეფონის ნომერი"
+               type="text"
+               name="phone_number"
+               value={phone_number}
+               placeholder="+995 590 00 07 01"
+               onHandleChange={handleChange}
+               hint="უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს"
+               top="650px"
+               left="150px"
+               width="878px"
+            />
            <Button top="809px" width="176px" left="875px">შემდეგი</Button>
          </form>
        </div>

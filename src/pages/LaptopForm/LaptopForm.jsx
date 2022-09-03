@@ -8,6 +8,7 @@ import BackButton from "../../components/BackButton/BackButton";
 import styles from "./LaptopForm.module.css";
 import Button from "../../components/Button/Button";
 import Logo from "../../components/Logo1/Logo";
+import Input from "../../components/Input/Input";
 
 export const LaptopForm = () => {
   const initialState = {
@@ -196,11 +197,18 @@ export const LaptopForm = () => {
            <div className={styles.imgBtn}><span className={styles.imgBtnText}>ატვირთე</span></div>
          </div>
 
-         <div className={styles.laptopName}>
-           <label className={styles.laptopNameLabel}>ლეპტოპის სახელი</label>
-           <input className={styles.laptopNameInput} type='text' name="laptop_name" value={laptop_name} onChange={handleChange} placeholder="HP"/>
-           <label className={styles.laptopNameHint}>ლათინური ასოები, ციპრები, !@#$%^&*()_+</label>
-         </div>
+         <Input
+             title="ლეპტოპის სახელი"
+             type="text"
+             name="laptop_name"
+             value={laptop_name}
+             placeholder="+995 590 00 07 01"
+             onHandleChange={handleChange}
+             hint="ლათინური ასოები, ციპრები, !@#$%^&*()_+"
+             top="540px"
+             left="150px"
+             width="407px"
+         />
 
         <div className={styles.laptopBrand}>
           <select className={styles.selectLaptopBrand} value={laptop_brand_id} onChange={selectBrand}>
@@ -218,18 +226,45 @@ export const LaptopForm = () => {
              {cpus?.data?.map(cpu => <option className={styles.selectCpus} key={cpu?.id} value={cpu?.id}>{cpu.name}</option>)}
            </select>
          </div>
-         <div className={styles.cpuCores}>
-           <label className={styles.cpuCoresLabel}>CPU-ს ბირთვი</label>
-           <input className={styles.cpuCoresInput} type='number' name='laptop_cpu_cores' value={laptop_cpu_cores} onChange={handleChange} placeholder="14"/>
-           <label className={styles.cpuCoresHint}>მხოლოდ ციფრები</label>
-         </div>
 
+         <Input
+             title="CPU-ს ბირთვი"
+             type="number"
+             name="laptop_cpu_cores"
+             value={laptop_cpu_cores}
+             placeholder="22"
+             onHandleChange={handleChange}
+             hint="მხოლოდ ციფრები"
+             top="760px"
+             left="450px"
+             width="276px"
+         />
 
-         <div className={styles.cpuThreads}>
-           <label className={styles.cpuThreadsLabel}>CPU-ს ნაკადი</label>
-           <input className={styles.cpuThreadsInput} type='number' name='laptop_cpu_threads' value={laptop_cpu_threads} onChange={handleChange} placeholder="365"/>
-           <label className={styles.cpuThreadsHint}>მხოლოდ ციფრები</label>
-         </div>
+         <Input
+             title="CPU-ს ნაკადი"
+             type="number"
+             name="laptop_cpu_threads"
+             value={laptop_cpu_threads}
+             placeholder="365"
+             onHandleChange={handleChange}
+             hint="მხოლოდ ციფრები"
+             top="760px"
+             left="750px"
+             width="276px"
+         />
+
+         <Input
+             title="CPU-ს ბირთვი"
+             type="number"
+             name="laptop_cpu_cores"
+             value={laptop_cpu_cores}
+             placeholder="22"
+             onHandleChange={handleChange}
+             hint="მხოლოდ ციფრები"
+             top="760px"
+             left="450px"
+             width="276px"
+         />
 
          <div className={styles.ram}>
            <label className={styles.ramLabel}>RAM</label>

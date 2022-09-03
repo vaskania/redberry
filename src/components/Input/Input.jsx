@@ -1,11 +1,18 @@
 import styles from './Input.module.css'
+import {useState} from "react";
+
 
 const Input = ({...props}) => {
+
+    const onChange = (e) => {
+       return props.onHandleChange({name:props.name,value: e.target.value})
+    }
+
     return (
         <div className={styles.container} style={{...props}}>
             <label className={styles.inputTitle}>{props.title}</label>
             <div className={props.error ? styles.error : styles.inputContainer}>
-                <input className={styles.input} type={props.type} />
+                <input className={styles.input} type={props.type} onChange={onChange}/>
             </div>
             <label className={styles.inputHint}>{props.hint}</label>
         </div>
@@ -15,21 +22,3 @@ const Input = ({...props}) => {
 export default Input;
 
 
-// export const MyInput = (params: any) => {
-//     const { title, description, placeholder, blockStyles, onHandleChange, value, name, error } = params
-//     return (
-//         <div className={styles.block} style={blockStyles}>
-//             <div className={styles.title}>{title}</div>
-//             <div className={error ? styles.errorDiv : styles.inputDiv}>
-//                 <input
-//                     name={name}
-//                     onChange={handleChange}
-//                     className={styles.input}
-//                     placeholder={placeHolder}
-//                     value={value}
-//                 />
-//             </div>
-//             <div className={styles.description}>{description}</div>
-//         </div>
-//     );
-// };
