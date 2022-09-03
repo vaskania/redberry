@@ -152,12 +152,24 @@
 
         background: #F7F7F7;
     }
+    .userInfo {
+        display: flex;
+        flex-direction: row;
+        flex: 0 0 80%;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top:0px;
+        left:0px;
+        width: 390px;
+        height: 250px;
+    }
 
     .nav {
         position: absolute;
         width: 200px;
         height: 50px;
-        left: calc(50% - 179px/2 - 0.5px);
+        left: calc(50% - 179px / 2 - 0.5px);
         top: 25px;
         margin: 0px;
 
@@ -175,7 +187,8 @@
 
         color: #232323;
     }
-    .pages{
+
+    .pages {
         display: inline-block;
         position: absolute;
         width: 21px;
@@ -194,234 +207,34 @@
 
         color: #898989;
     }
-    .laptopHide{
+
+    .laptopHide {
         display: none;
     }
+
     .line {
         display: none;
     }
 
     .form {
+        display: flex;
+        flex: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 0px;
         position: absolute;
+        border: 1px solid green;
         left: 0px;
         right: 0px;
         top: 100px;
         bottom: 0px;
-
+        max-width: 390px;
         background: #FFFFFF;
         border-radius: 12px 12px 0px 0px;
     }
 
-    .userInfo {
-        display: block;
-        position: absolute;
-        top:0px;
-        left:0px
-    }
-
-    .userName {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 8px 24px;
-        gap: 8px;
-
-        position: relative;
-        height: 134px;
-        left: -8px;
-        right: -8px;
-        top: 0px;
-    }
-    .name {
-        width: 358px;
-        height: 21px;
-
-        font-family: 'Helvetica Neue';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 21px;
-        /* identical to box height, or 117% */
-
-        display: flex;
-        align-items: center;
-
-        color: #000000;
-
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 0;
-        align-self: stretch;
-        flex-grow: 0;
-    }
-    .nameInput{
-        box-sizing: border-box;
-
-        width: 358px;
-        height: 60px;
-
-        /* ლურჯი/400 */
-
-        border: 1.8px solid #8AC0E2;
-        border-radius: 8px;
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 1;
-        align-self: stretch;
-        flex-grow: 0;
-    }
-    .nameInput[type=text] {
-        left: 16px;
-        right: 16px;
-        top: calc(50% - 21px/2 - 0.5px);
-
-        font-family: 'Helvetica Neue';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 21px;
-        /* identical to box height, or 131% */
-
-        display: flex;
-        align-items: center;
-
-        color: rgba(0, 0, 0, 0.6);
-    }
-    .nameHint{
-        width: 358px;
-        height: 21px;
-
-        font-family: 'Helvetica Neue';
-        font-style: normal;
-        font-weight: 300;
-        font-size: 14px;
-        line-height: 21px;
-        /* identical to box height, or 150% */
-
-        display: flex;
-        align-items: center;
-
-        /* შავი/500 */
-
-        color: #2E2E2E;
-
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 2;
-        align-self: stretch;
-        flex-grow: 0;
-    }
-
-    .userSurname {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 8px 24px;
-        gap: 8px;
-
-        position: relative;
-        height: 134px;
-        left: -8px;
-        right: -8px;
-        top: 0px;
-    }
-
-    .surname{
-        width: 358px;
-        height: 21px;
-
-        font-family: 'Helvetica Neue';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 21px;
-        /* identical to box height, or 117% */
-
-        display: flex;
-        align-items: center;
-
-        color: #000000;
-
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 0;
-        align-self: stretch;
-        flex-grow: 0;
-    }
-
-    .surnameInput{
-        box-sizing: border-box;
-
-        width: 358px;
-        height: 60px;
-
-        /* ლურჯი/400 */
-
-        border: 1.8px solid #8AC0E2;
-        border-radius: 8px;
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 1;
-        align-self: stretch;
-        flex-grow: 0;
-    }
-
-    .surnameInput[type=text]{
-        left: 16px;
-        right: 16px;
-        top: calc(50% - 21px/2 - 0.5px);
-
-        font-family: 'Helvetica Neue';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 21px;
-        /* identical to box height, or 131% */
-
-        display: flex;
-        align-items: center;
-
-        color: rgba(0, 0, 0, 0.6);
-    }
-
-    .surnameHint {
-        width: 358px;
-        height: 21px;
-
-        font-family: 'Helvetica Neue';
-        font-style: normal;
-        font-weight: 300;
-        font-size: 14px;
-        line-height: 21px;
-        /* identical to box height, or 150% */
-
-        display: flex;
-        align-items: center;
-
-        /* შავი/500 */
-
-        color: #2E2E2E;
-
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 2;
-        align-self: stretch;
-        flex-grow: 0;
-    }
-
-    .team{
+    .team {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -434,6 +247,7 @@
         top: 299px;
 
     }
+
     .selectTeam {
         width: 358px;
         height: 60px;
@@ -461,6 +275,7 @@
         right: -8px;
         top: 405px;
     }
+
     .selectPosition {
         width: 358px;
         height: 60px;
@@ -472,208 +287,6 @@
 
         flex: none;
         order: 0;
-        align-self: stretch;
-        flex-grow: 0;
-    }
-
-    .email{
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 8px 24px;
-        gap: 8px;
-
-        position: absolute;
-        width: 406px;
-        height: 134px;
-        left: calc(50% - 406px/2);
-        top: 490px;
-    }
-    .emailLabel{
-        width: 358px;
-        height: 21px;
-
-        font-family: 'Helvetica Neue';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 21px;
-        /* identical to box height, or 117% */
-
-        display: flex;
-        align-items: center;
-
-        color: #000000;
-
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 0;
-        align-self: stretch;
-        flex-grow: 0;
-    }
-
-    .emailInput{
-        box-sizing: border-box;
-
-        width: 358px;
-        height: 60px;
-
-        /* ლურჯი/400 */
-
-        border: 1.8px solid #8AC0E2;
-        border-radius: 8px;
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 1;
-        align-self: stretch;
-        flex-grow: 0;
-    }
-    .emailInput[type=text]{
-        left: 16px;
-        right: 16px;
-        top: calc(50% - 21px/2 - 0.5px);
-
-        font-family: 'Helvetica Neue';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 21px;
-        /* identical to box height, or 131% */
-
-        display: flex;
-        align-items: center;
-
-        color: rgba(0, 0, 0, 0.6);
-    }
-
-    .emailHint{
-        width: 358px;
-        height: 21px;
-
-        font-family: 'Helvetica Neue';
-        font-style: normal;
-        font-weight: 300;
-        font-size: 14px;
-        line-height: 21px;
-        /* identical to box height, or 150% */
-
-        display: flex;
-        align-items: center;
-
-        /* შავი/500 */
-
-        color: #2E2E2E;
-
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 2;
-        align-self: stretch;
-        flex-grow: 0;
-    }
-
-    .phone {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 8px 24px;
-        gap: 8px;
-
-        position: absolute;
-        height: 134px;
-        left: -8px;
-        right: -8px;
-        top: 630px;
-    }
-
-    .phoneLabel{
-        width: 358px;
-        height: 21px;
-
-        font-family: 'Helvetica Neue';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 21px;
-        /* identical to box height, or 117% */
-
-        display: flex;
-        align-items: center;
-
-        color: #000000;
-
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 0;
-        align-self: stretch;
-        flex-grow: 0;
-    }
-
-    .phoneInput{
-        box-sizing: border-box;
-
-        width: 358px;
-        height: 60px;
-
-        /* ლურჯი/400 */
-
-        border: 1.8px solid #8AC0E2;
-        border-radius: 8px;
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 1;
-        align-self: stretch;
-        flex-grow: 0;
-    }
-    .phoneInput[type=text]{
-        left: 16px;
-        right: 16px;
-        top: calc(50% - 21px/2 - 0.5px);
-
-        font-family: 'Helvetica Neue';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 21px;
-        /* identical to box height, or 131% */
-
-        display: flex;
-        align-items: center;
-
-        color: rgba(0, 0, 0, 0.6);
-    }
-    .phoneHint {
-        width: 358px;
-        height: 21px;
-
-        font-family: 'Helvetica Neue';
-        font-style: normal;
-        font-weight: 300;
-        font-size: 12px;
-        line-height: 21px;
-        /* identical to box height, or 150% */
-
-        display: flex;
-        align-items: center;
-
-        /* შავი/500 */
-
-        color: #2E2E2E;
-
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 2;
         align-self: stretch;
         flex-grow: 0;
     }

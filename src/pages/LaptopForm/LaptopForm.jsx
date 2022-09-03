@@ -30,7 +30,7 @@ export const LaptopForm = () => {
   const [laptopDetails, setLaptopDetails] = useState(initialState)
   const { data, toggleActive, addNewData } = useContext(AppContext)
   const navigate = useNavigate()
-  console.log(data)
+
   const {
     laptop_name,
     laptop_cpu_cores,
@@ -53,6 +53,7 @@ export const LaptopForm = () => {
       }
       localStorage.setItem('laptop', JSON.stringify({ ...laptopDetails, laptop_image: file }))
       setLaptopDetails({ ...laptopDetails, laptop_image: file })
+      addNewData({laptop_image: file})
     } catch (e) {
       console.log(e)
     }
@@ -60,20 +61,31 @@ export const LaptopForm = () => {
   }
 
 
-  const handleChange = (e) => {
-    const { value } = e.target;
-
-    if (e.target.name === 'laptop_cpu_cores' || e.target.name === 'laptop_cpu_threads' || e.target.name === 'laptop_ram' || e.target.name === 'laptop_price') {
-      localStorage.setItem('laptop', JSON.stringify({ ...laptopDetails, [e.target.name]: value }))
+  const handleChange = (data) => {
+    const {name, value} = data
+    if (name === 'laptop_cpu_cores' || name === 'laptop_cpu_threads' || name === 'laptop_ram' || name === 'laptop_price') {
+      localStorage.setItem('laptop', JSON.stringify({ ...laptopDetails, [name]: value }))
+      addNewData({ [name]: +value.trim()})
       return setLaptopDetails({
         ...laptopDetails,
-        [e.target.name]: +value.trim()
+        [name]: +value.trim()
       });
     }
-    localStorage.setItem('laptop', JSON.stringify({ ...laptopDetails, [e.target.name]: value }))
+    localStorage.setItem('laptop', JSON.stringify({ ...laptopDetails, [name]: value }))
+    addNewData({ [name]: value.trim()})
     setLaptopDetails({
       ...laptopDetails,
-      [e.target.name]: value.trim()
+      [name]: value.trim()
+    });
+  }
+
+  const handleRadio = (e) => {
+    const {value} = e.target
+    localStorage.setItem('laptop', JSON.stringify({ ...laptopDetails, [e.target.name]: value }))
+    addNewData({ [e.target.name]: value})
+    setLaptopDetails({
+      ...laptopDetails,
+      [e.target.name]: value
     });
   }
 
@@ -94,6 +106,7 @@ export const LaptopForm = () => {
       return;
     }
     const filtered = brands.data.filter(brand => brand.id === +value)
+    addNewData({laptop_brand_id: filtered[0].id})
     setLaptopDetails({ ...laptopDetails, laptop_brand_id: filtered[0].id })
     localStorage.setItem('laptop', JSON.stringify({
       ...laptopDetails,
@@ -105,7 +118,6 @@ export const LaptopForm = () => {
   const selectCpu = (e) => {
 
     const { value } = e.target
-
     if (value === '') {
       setLaptopDetails({
         ...laptopDetails,
@@ -113,6 +125,7 @@ export const LaptopForm = () => {
       })
       return
     }
+    addNewData({laptop_cpu: value})
     setLaptopDetails({
       ...laptopDetails,
       laptop_cpu: value
@@ -128,14 +141,18 @@ export const LaptopForm = () => {
 
   useEffect(() => {
     const laptop = JSON.parse(localStorage.getItem('laptop'));
+    const user = JSON.parse(localStorage.getItem('user'));
 
     if (laptop) {
       setLaptopDetails(laptop);
+      addNewData(laptop)
+    }
+    if(user){
+      addNewData(user)
     }
   }, []);
 
   const sendData = async (data) => {
-    console.log(data)
     try {
       const res = await axios.post(`${process.env.REACT_APP_URL}/laptop/create`, data,
          { headers: { "Content-Type": "multipart/form-data" } }
@@ -161,13 +178,12 @@ export const LaptopForm = () => {
       if (laptop_price === 0) throw new Error('please add laptop price')
       if (!laptop_state) throw new Error('please select laptop condition')
 
-
+      delete data.positionName
+      delete data.teamName
       await sendData(data)
       localStorage.removeItem('user')
       localStorage.removeItem('laptop')
 
-
-      toggleActive()
       navigate('/success')
     } catch (e) {
       console.log(e)
@@ -193,8 +209,8 @@ export const LaptopForm = () => {
        <form onSubmit={handleSubmit}>
          <div className={styles.img}>
            <label className={styles.imgLabel}>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</label>
-           {/*<input className={styles.imgBtn} type='file' onChange={selectFile}/>*/}
-           <div className={styles.imgBtn}><span className={styles.imgBtnText}>ატვირთე</span></div>
+           <input className={styles.imgBtn} type='file' onChange={selectFile}/>
+           {/*<div className={styles.imgBtn}><span className={styles.imgBtnText}>ატვირთე</span></div>*/}
          </div>
 
          <Input
@@ -223,7 +239,7 @@ export const LaptopForm = () => {
          <div className={styles.cpu}>
            <select className={styles.selectCpu} value={laptop_cpu} onChange={selectCpu}>
              <option value=''>CPU</option>
-             {cpus?.data?.map(cpu => <option className={styles.selectCpus} key={cpu?.id} value={cpu?.id}>{cpu.name}</option>)}
+             {cpus?.data?.map(cpu => <option className={styles.selectCpus} key={cpu?.id} value={cpu?.name}>{cpu.name}</option>)}
            </select>
          </div>
 
@@ -254,55 +270,58 @@ export const LaptopForm = () => {
          />
 
          <Input
-             title="CPU-ს ბირთვი"
+             title="RAM"
              type="number"
-             name="laptop_cpu_cores"
-             value={laptop_cpu_cores}
-             placeholder="22"
+             name="laptop_ram"
+             value={laptop_ram}
+             placeholder="16"
              onHandleChange={handleChange}
              hint="მხოლოდ ციფრები"
-             top="760px"
-             left="450px"
-             width="276px"
+             top="930px"
+             left="150px"
+             width="407px"
          />
-
-         <div className={styles.ram}>
-           <label className={styles.ramLabel}>RAM</label>
-           <input className={styles.ramInput} type='number' name="laptop_ram" value={laptop_ram} onChange={handleChange} placeholder="16"/>
-           <label className={styles.ramHint}>მხოლოდ ციფრები</label>
-         </div>
 
          <div className={styles.hdContainer}>
            <label className={styles.hdType}>მეხსიერების ტიპი</label>
-           <input className={styles.ssdType} type="radio" name='laptop_hard_drive_type' id="ssd" checked={laptop_hard_drive_type === 'SSD'} value='SSD'
-                  onChange={handleChange}/> <label htmlFor="ssd" className={styles.ssdLabel}>SSD</label>
-           <input className={styles.hddType} type="radio" name='laptop_hard_drive_type' id="hdd" value='HDD' checked={laptop_hard_drive_type === "HDD"}
-                  onChange={handleChange}/> <label htmlFor='hdd' className={styles.hddLabel}>HDD</label>
+           <input className={styles.ssdType} type="radio" name='laptop_hard_drive_type' id="SSD" checked={laptop_hard_drive_type === 'SSD'} value='SSD'
+                  onChange={handleRadio}/> <label htmlFor="SSD" className={styles.ssdLabel}>SSD</label>
+           <input className={styles.hddType} type="radio" name='laptop_hard_drive_type' id="HDD" value='HDD' checked={laptop_hard_drive_type === "HDD"}
+                  onChange={handleRadio}/> <label htmlFor='HDD' className={styles.hddLabel}>HDD</label>
          </div>
 
          <div className={styles.line2}/>
 
-         <div className={styles.date}>
-           <label className={styles.dateLabel}>შეძენის რიცხვი (არჩევითი)</label>
-           <input className={styles.dateInput}
-                  type='date' name="laptop_purchase_date"
-                  onChange={handleChange}
-                  value={laptop_purchase_date}
-           />
-         </div>
+         <Input
+             title="შეძენის რიცხვი (არჩევითი)"
+             type="date"
+             name="laptop_purchase_date"
+             value={laptop_purchase_date}
+             onHandleChange={handleChange}
+             top="1140px"
+             left="150px"
+             width="407px"
+         />
 
-         <div className={styles.price}>
-           <label className={styles.priceLabel}>ლეპტოპის ფასი</label>
-           <input className={styles.priceInput} type='number' name='laptop_price' value={laptop_price} onChange={handleChange} placeholder="0000"/>
-           <label className={styles.priceHint}>მხოლოდ ციფები</label>
-         </div>
+         <Input
+             title="ლეპტოპის ფასი"
+             type="number"
+             name="laptop_price"
+             value={laptop_price}
+             placeholder="000"
+             onHandleChange={handleChange}
+             hint="მხოლოდ ციფრები"
+             top="1140px"
+             left="620px"
+             width="407px"
+         />
 
          <div className={styles.condition}>
            <label className={styles.conditionLabel}>ლეპტოპის მდგომარეობა</label>
-           <input className={styles.new} type="radio" name='laptop_state' id="new" value='new' checked={laptop_state === 'new'} onChange={handleChange}/>
+           <input className={styles.new} type="radio" name='laptop_state' id="new" value='new' checked={laptop_state === 'new'} onChange={handleRadio}/>
            <label className={styles.newLabel} htmlFor="new">ახალი</label>
            <input className={styles.used} id="used" type="radio" name='laptop_state' value='used' checked={laptop_state === 'used'}
-                  onChange={handleChange}/> <label className={styles.usedLabel} htmlFor="used">მეორადი</label>
+                  onChange={handleRadio}/> <label className={styles.usedLabel} htmlFor="used">მეორადი</label>
          </div>
 
          <div className={styles.btnBack} onChange={toggleActive}>უკან</div>

@@ -1,9 +1,8 @@
 import styles from './LaptopDetails.module.css'
 
-const LaptopDetails = ({ data }) => {
+const LaptopDetails = ({ data , brand, team, position}) => {
+
   const { user, laptop } = data.data
-  console.log(user)
-  console.log(laptop)
   return (
      <div className={styles.container}>
        <div className={styles.img}><img/></div>
@@ -17,8 +16,8 @@ const LaptopDetails = ({ data }) => {
          </div>
          <div className={styles.info}>
            <span> {user.name} {user.surname}</span>
-           <span>{user.team_id}</span>
-           <span>{user.position_id}</span>
+           <span>{team}</span>
+           <span>{position}</span>
            <span>{user.email}</span>
            <span>{user.phone_number}</span>
          </div>
@@ -39,7 +38,7 @@ const LaptopDetails = ({ data }) => {
 
            <div className={styles.info}>
              <span>{laptop.name}</span>
-             <span>{laptop.brand_id}</span>
+             <span>{brand}</span>
              <span>{laptop.ram}</span>
              <span>{laptop.hard_drive_type}</span>
            </div>
@@ -69,7 +68,7 @@ const LaptopDetails = ({ data }) => {
              <span>ლეპტოპის ფასი:</span>
            </div>
            <div className={styles.info}>
-             <span>{laptop.state}</span>
+             <span>{laptop.state === "new" ? "ახალი" : "მეორადი"}</span>
              <span>{laptop.price}</span>
            </div>
 

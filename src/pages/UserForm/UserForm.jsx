@@ -20,7 +20,7 @@ export const UserForm = () => {
     token: process.env.REACT_APP_TOKEN
   }
   const url = process.env.REACT_APP_URL
-  const { data, addNewData } = useContext(AppContext)
+  const {  addNewData } = useContext(AppContext)
   const [teamName, setTeamName] = useState('')
   const [positionName, setPositionName] = useState('')
   const [filteredPositionOptions, setFilteredPositionOptions] = useState([])
@@ -89,12 +89,18 @@ export const UserForm = () => {
     getTeamValue()
     // eslint-disable-next-line
     const user = JSON.parse(localStorage.getItem('user'));
+    const laptop = JSON.parse(localStorage.getItem('laptop'));
     if (user) {
       const { teamName, positionName } = user
       setTeamName(teamName)
       setPositionName(positionName)
       setUserForm(user);
+      addNewData(user)
     }
+    if(laptop){
+      addNewData(laptop)
+    }
+
   }, []);
 
   useEffect(() => {
@@ -112,6 +118,7 @@ export const UserForm = () => {
       return setTeamName(value)
     }
     const filteredValue = params[0].filter(option => option.name === value)
+    console.log(filteredValue)
     setUserForm({ ...userForm, team_id: filteredValue[0].id })
     setTeamName(value)
     setFilteredPositionOptions(filteredValue[0].position_id)

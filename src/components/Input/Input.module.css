@@ -131,3 +131,89 @@
     align-self: stretch;
     flex-grow: 0;
 }
+
+@media screen and (max-width: 390px ) {
+    .container {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+        position: absolute;
+        width: 390px;
+        height: 100px;
+        top: 50px;
+    }
+
+    .inputTitle {
+        width: 358px;
+        height: 21px;
+    }
+
+    .inputContainer {
+        width: 358px;
+        border: 1.8px solid #8AC0E2;
+        order: 1;
+    }
+
+
+
+    .inputHint {
+        width: 358px;
+    }
+
+    .input {
+        width: 100%;
+        height: 21px;
+
+        font-family: 'Helvetica Neue';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 21px;
+        /* identical to box height, or 131% */
+
+        /*display: block;*/
+        margin-top: 15px;
+        margin-left: 10px;
+        color: #000000;
+        border: none;
+        background-color: transparent;
+        resize: none;
+        outline: none;
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+    .inputContainer:focus-within{
+        box-sizing: border-box;
+        width: 100%;
+        height: 60px;
+        background: rgba(43, 75, 242, 0.06);
+        border: 1.8px solid #6499FF;
+        border-radius: 8px;
+        /* Inside auto layout */
+        flex: none;
+        order: 1;
+        align-self: stretch;
+        flex-grow: 0;
+    }
+    .error{
+        box-sizing: border-box;
+
+        width: 100%;
+        height: 60px;
+
+        border: 1.8px solid #E52F2F;
+        border-radius: 8px;
+
+        /* Inside auto layout */
+
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+    }
+
+}

@@ -23,19 +23,15 @@ const initialValue = {
 }
 
 export const ContextProvider = ({ children }) => {
-  const [isActive, setIsActive] = useState(false)
   const [data, seData] = useState(initialValue)
 
-  const toggleActive = () => {
-    setIsActive(prevState => !prevState)
-  }
 
-  const addNewData = (newData) => {
+  const addNewData =  (newData) => {
     seData(prevState => {
       return { ...prevState, ...newData }
     })
   }
 
   return <AppContext.Provider
-     value={{ isActive, toggleActive, addNewData, data }}>{children}</AppContext.Provider>
+     value={{addNewData, data }}>{children}</AppContext.Provider>
 }

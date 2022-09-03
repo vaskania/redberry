@@ -8,11 +8,10 @@ import Button from "../../components/Button/Button";
 
 export const SuccessPage = () => {
   const navigate = useNavigate()
-  const { data } = useState(AppContext)
+
   const goToListPage = () => navigate('/laptops')
   const goToHomePage = () => navigate('/')
 
-  console.log(data)
   return (
      <div className={styles.successContainer}>
        <div className={styles.container}>
