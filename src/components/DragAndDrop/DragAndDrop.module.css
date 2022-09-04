@@ -1,8 +1,9 @@
 .container{
     box-sizing: border-box;
 
-    position: absolute;
+    position: relative;
     height: 423px;
+    width: 878px;
     left: 174px;
     right: 174px;
     top: 68px;
@@ -23,8 +24,7 @@
     position:relative;
     width: 233px;
     height: 60px;
-    left: calc(50% - 233px/2 - 0.5px);
-    top: 316px;
+    top: 216px;
     z-index: 2;
     opacity: 0;
     cursor: pointer;
@@ -42,7 +42,7 @@
     width: 233px;
     height: 60px;
     left: calc(50% - 233px/2 - 0.5px);
-    top: 316px;
+    top: 216px;
 
     background: #62A1EB;
     border-radius: 8px;
@@ -56,4 +56,26 @@
     outline: none;
 
     transition: background-color 0.4s;
+}
+
+.imgLabel{
+    position: absolute;
+    width: 195px;
+    height: 76px;
+    left: calc(50% - 195px/2 + 0.5px);
+    top: 85px;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 38px;
+    /* or 190% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* ლურჯი/700 */
+
+    color: #4386A9;
 }

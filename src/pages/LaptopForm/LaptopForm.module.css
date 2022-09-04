@@ -44,72 +44,19 @@
     left: 174px;
     right: 174px;
     top: 68px;
-
-    background: #F7F7F7;
-    /* ლურჯი/700 */
-
-    border: 2px dashed #4386A9;
-    border-radius: 18px;
-}
-
-.imgLabel{
-    position: absolute;
-    width: 195px;
-    height: 76px;
-    left: calc(50% - 195px/2 + 0.5px);
-    top: 85px;
-    font-family: 'Helvetica Neue';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 38px;
-    /* or 190% */
-
-    display: flex;
-    align-items: center;
     text-align: center;
-
-    /* ლურჯი/700 */
-
-    color: #4386A9;
-}
-
-.imgBtn{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 18px 60px;
-    gap: 20px;
-
-    position: absolute;
-    width: 233px;
-    height: 60px;
-    left: calc(50% - 333px/2 - 0.5px);
-    top: 206px;
-
-    background: #62A1EB;
-    border-radius: 8px;
-    cursor: pointer;
 }
-.imgBtnText {
-    width: 90px;
-    height: 24px;
+.image {
+    position: relative;
+    display: block;
+    margin:auto;
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
 
-    font-family: 'Helvetica Neue';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    text-align: center;
-    color: #FFFFFF;
-
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
 }
 
 .laptopName{

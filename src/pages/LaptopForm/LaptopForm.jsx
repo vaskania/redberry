@@ -10,6 +10,7 @@ import Button from "../../components/Button/Button";
 import Logo from "../../components/Logo1/Logo";
 import Input from "../../components/Input/Input";
 import Radio from "../../components/Radio/Radio";
+import DragAndDrop from "../../components/DragAndDrop/DragAndDrop";
 
 export const LaptopForm = () => {
   const initialState = {
@@ -29,6 +30,7 @@ export const LaptopForm = () => {
   const { data: brands, loading, error } = useFetch(`${process.env.REACT_APP_URL}/brands`)
   const { data: cpus } = useFetch(`${process.env.REACT_APP_URL}/cpus`)
   const [laptopDetails, setLaptopDetails] = useState(initialState)
+  const [url, setUrl] = useState()
   const { data, toggleActive, addNewData } = useContext(AppContext)
   const navigate = useNavigate()
 
@@ -46,21 +48,21 @@ export const LaptopForm = () => {
     laptop_purchase_date
   } = laptopDetails
 
-  const selectFile = (e) => {
+
+  const selectFile = (file) => {
+    console.log(file)
     try {
-      const file = e.target.files[0]
       if (file.type !== 'image/png' && file.type !== 'image/jpeg') {
         throw new Error('arali surati')
       }
-      localStorage.setItem('laptop', JSON.stringify({ ...laptopDetails, laptop_image: file }))
+      // localStorage.setItem('laptop', JSON.stringify({ ...laptopDetails, laptop_image: file }))
       setLaptopDetails({ ...laptopDetails, laptop_image: file })
       addNewData({laptop_image: file})
-    } catch (e) {
-      console.log(e)
+    } catch (file) {
+      console.log(file)
     }
 
   }
-
 
   const handleChange = (data) => {
     const {name, value} = data
@@ -90,16 +92,6 @@ export const LaptopForm = () => {
     });
   }
 
-  const handleRadio = (e) => {
-    const {value} = e.target
-    localStorage.setItem('laptop', JSON.stringify({ ...laptopDetails, [e.target.name]: value }))
-    addNewData({ [e.target.name]: value})
-    setLaptopDetails({
-      ...laptopDetails,
-      [e.target.name]: value
-    });
-  }
-  console.log(laptopDetails)
   const selectBrand = (e) => {
 
     const { value } = e.target;
@@ -148,7 +140,6 @@ export const LaptopForm = () => {
     }))
 
   }
-
 
   useEffect(() => {
     const laptop = JSON.parse(localStorage.getItem('laptop'));
@@ -219,9 +210,16 @@ export const LaptopForm = () => {
        <div className={styles.form}>
        <form onSubmit={handleSubmit}>
          <div className={styles.img}>
-           <label className={styles.imgLabel}>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</label>
-           <input className={styles.imgBtn} type='file' onChange={selectFile}/>
-           {/*<div className={styles.imgBtn}><span className={styles.imgBtnText}>ატვირთე</span></div>*/}
+           {url && <img src={url} alt={url} className={styles.image}/>}
+           {!url && <DragAndDrop
+               top="0px"
+               left="0px"
+               file={laptop_image}
+               // setFile={setFile}
+               setUrl={setUrl}
+               selectFile={selectFile}
+           />}
+
          </div>
 
          <Input

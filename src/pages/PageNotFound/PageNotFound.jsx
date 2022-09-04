@@ -1,17 +1,16 @@
-import Input from "../../components/Input/Input";
 import styles from './PageNotFound.module.css'
-import Radio from "../../components/Radio/Radio";
 import DragAndDrop from "../../components/DragAndDrop/DragAndDrop";
 import {useState} from "react";
 
 const PageNotFound = () => {
-    const [file, setFile] = useState({})
+    const [file, setFile] = useState([])
+    const [url, setUrl] = useState()
 
-    console.log(file)
+    console.log(url)
     return (
         <div className={styles.container}>
-            <p> Upload File </p>
-            <DragAndDrop  setFile={setFile}/>
+            <img src={url} alt="img" />
+            <DragAndDrop  file={file} setFile={setFile} setUrl={setUrl}/>
         </div>
     );
 };
