@@ -118,7 +118,6 @@ export const UserForm = () => {
       return setTeamName(value)
     }
     const filteredValue = params[0].filter(option => option.name === value)
-    console.log(filteredValue)
     setUserForm({ ...userForm, team_id: filteredValue[0].id })
     setTeamName(value)
     setFilteredPositionOptions(filteredValue[0].position_id)

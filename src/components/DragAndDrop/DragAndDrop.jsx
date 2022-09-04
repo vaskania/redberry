@@ -1,6 +1,8 @@
-
+import {useDropzone} from 'react-dropzone'
 import styles from './DragAndDrop.module.css'
-import {useEffect} from "react";
+import {useEffect, useCallback} from "react";
+
+
 const DragAndDrop = ({file, selectFile,setFile, setUrl,...props}) => {
     const uploadHandler =(e) => {
         if(!e.target.files[0]) return

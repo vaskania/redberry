@@ -159,6 +159,7 @@ export const LaptopForm = () => {
       const res = await axios.post(`${process.env.REACT_APP_URL}/laptop/create`, data,
          { headers: { "Content-Type": "multipart/form-data" } }
       )
+      console.log(res)
       return res
     } catch (e) {
       console.log(e)
@@ -183,7 +184,7 @@ export const LaptopForm = () => {
       delete data.positionName
       delete data.teamName
       await sendData(data)
-      localStorage.removeItem('user')
+      // localStorage.removeItem('user')
       localStorage.removeItem('laptop')
 
       navigate('/success')
@@ -215,7 +216,6 @@ export const LaptopForm = () => {
                top="0px"
                left="0px"
                file={laptop_image}
-               // setFile={setFile}
                setUrl={setUrl}
                selectFile={selectFile}
            />}
