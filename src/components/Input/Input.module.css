@@ -50,7 +50,6 @@
 }
 
 
-
 .inputHint {
     width: 100%;
     height: 21px;
@@ -102,7 +101,8 @@
     order: 0;
     flex-grow: 0;
 }
-.inputContainer:focus-within{
+
+.inputContainer:focus-within {
     box-sizing: border-box;
     width: 100%;
     height: 60px;
@@ -115,7 +115,8 @@
     align-self: stretch;
     flex-grow: 0;
 }
-.error{
+
+.error {
     box-sizing: border-box;
 
     width: 100%;
@@ -157,7 +158,6 @@
     }
 
 
-
     .inputHint {
         width: 358px;
     }
@@ -186,7 +186,8 @@
         order: 0;
         flex-grow: 0;
     }
-    .inputContainer:focus-within{
+
+    .inputContainer:focus-within {
         box-sizing: border-box;
         width: 100%;
         height: 60px;
@@ -199,7 +200,8 @@
         align-self: stretch;
         flex-grow: 0;
     }
-    .error{
+
+    .error {
         box-sizing: border-box;
 
         width: 100%;

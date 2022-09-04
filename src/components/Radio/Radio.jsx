@@ -1,12 +1,12 @@
 import styles from './Radio.module.css'
 
-const Radio = ({...props }) => {
+const Radio = ({ ...props }) => {
+    const { error } = props
     const onChange = (e) => {
-        return props.handleChange({name:e.target.name, value: e.target.value})
+        return props.handleChange({ name: e.target.name, value: e.target.value })
     }
-
     return (
-        <div className={styles.container} style={{...props}}>
+        <div className={styles.container} style={{ ...props }}>
             <div className={styles.radioItem}>
                 <input
                     type="radio"
@@ -15,9 +15,10 @@ const Radio = ({...props }) => {
                     value={props.value}
                     checked={props.checked === props.value}
                     onChange={onChange}/>
-                <label  htmlFor={props.value}></label>
+                <label htmlFor={props.value}></label>
             </div>
-            <label className={styles.radioLabel}  htmlFor={props.value}>{props.title}</label>
+            <label className={styles.radioLabel} htmlFor={props.value}
+                   style={error ? { color: "red" } : {}}>{props.title}</label>
         </div>
 
     );

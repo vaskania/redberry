@@ -1,8 +1,8 @@
-import { useContext, useState, useEffect } from "react";
+import {useContext, useState, useEffect} from "react";
 import axios from "axios";
-import { AppContext } from "../../context/app.context";
-import { geoRegEx, emailRegEx, phoneNumberRegEx } from '../../utils'
-import { useNavigate } from "react-router-dom";
+import {AppContext} from "../../context/app.context";
+import {geoRegEx, emailRegEx, phoneNumberRegEx} from '../../utils'
+import {useNavigate} from "react-router-dom";
 import styles from './UserForm.module.css'
 import BackButton from "../../components/BackButton/BackButton";
 import Logo from '../../components/Logo1/Logo'
@@ -20,17 +20,40 @@ export const UserForm = () => {
     token: process.env.REACT_APP_TOKEN
   }
   const url = process.env.REACT_APP_URL
-  const {  addNewData } = useContext(AppContext)
+  const { addNewData } = useContext(AppContext)
   const [teamName, setTeamName] = useState('')
   const [positionName, setPositionName] = useState('')
   const [filteredPositionOptions, setFilteredPositionOptions] = useState([])
   const [userForm, setUserForm] = useState(initialState)
+  const [errors, setErrors] = useState({
+    nameError: false,
+    surnameError: false,
+    emailError: false,
+    phone_numberError: false,
+    teamError: false,
+    positionError: false
+  })
   const [params, setParams] = useState({})
   const { name, surname, email, phone_number } = userForm;
   const navigate = useNavigate()
 
   const handleChange = (data) => {
-    const {name, value} = data
+    const { name, value } = data
+    if (name === "name") {
+      errors.nameError = !geoRegEx.test(value) || value.length === 0;
+    }
+    if (name === "surname") {
+      errors.surnameError = !geoRegEx.test(value) || value.length === 0;
+    }
+    if (name === "email") {
+      console.log(userForm.email)
+      errors.emailError = !emailRegEx.test(value) || value.length === 0;
+    }
+    if (name === "phone_number") {
+      errors.phone_numberError = !phoneNumberRegEx.test(value) || value.length === 0;
+    }
+    setErrors(errors)
+    localStorage.setItem('userErrors', JSON.stringify(errors))
     setUserForm({
       ...userForm,
       [name]: value.trim()
@@ -39,19 +62,45 @@ export const UserForm = () => {
 
   const addUser = (e) => {
     e.preventDefault()
-    try {
-      if (!geoRegEx.test(userForm.name)) throw new Error('not georgian')
-      if (!geoRegEx.test(userForm.surname)) throw new Error('არა')
-      if (!emailRegEx.test(userForm.email)) throw new Error('not valid email')
-      if (!phoneNumberRegEx.test(userForm.phone_number)) throw new Error('not valid phone number')
-      if (typeof userForm.team_id !== "number") throw new Error('Please select option')
-      if (typeof userForm.position_id !== "number") throw new Error('Please select options')
-
-      addNewData(userForm)
-      navigate('/laptop/create')
-    } catch (e) {
-      console.log(e)
+    if (!geoRegEx.test(userForm.name) || userForm.name.length === 0) {
+      errors.nameError = true
     }
+    if (!geoRegEx.test(userForm.surname) || userForm.surname.length === 0) {
+      errors.surnameError = true
+    }
+    if (!emailRegEx.test(userForm.email) || userForm.email.length === 0) {
+      errors.emailError = true
+    }
+    if (!phoneNumberRegEx.test(userForm.phone_number) || userForm.phone_number.length === 0) {
+      errors.phone_numberError = true
+    }
+    if (typeof userForm.team_id !== "number" || userForm.teamID === -1) {
+      errors.teamError = true
+    }
+    if (typeof userForm.position_id !== "number" || userForm.position_id === -1) {
+      errors.positionError = true
+    }
+    if (typeof userForm.team_id === "string" && userForm.team_id.length === 0) {
+      errors.teamError = true
+    }
+    if (typeof userForm.position_id === "string" && userForm.position_id.length === 0) {
+      errors.positionError = true
+    }
+    localStorage.setItem('userErrors', JSON.stringify(errors))
+    const errorsValues = Object.values(errors)
+    setErrors(errors)
+    let errorExists = false
+    for (let i = 0; i < errorsValues.length; i++) {
+      if (errorsValues[i]) {
+        errorExists = true
+        break;
+      }
+    }
+    addNewData(userForm)
+    if (errorExists) {
+      return;
+    }
+    navigate('/laptop/create')
   }
 
   const getTeamValue = async () => {
@@ -89,16 +138,18 @@ export const UserForm = () => {
     getTeamValue()
     // eslint-disable-next-line
     const user = JSON.parse(localStorage.getItem('user'));
-    const laptop = JSON.parse(localStorage.getItem('laptop'));
+    const userErrors = JSON.parse(localStorage.getItem('userErrors'))
+    if (userErrors) {
+      setErrors(userErrors)
+    } else {
+      localStorage.setItem('userErrors', JSON.stringify(errors))
+    }
     if (user) {
       const { teamName, positionName } = user
       setTeamName(teamName)
       setPositionName(positionName)
       setUserForm(user);
       addNewData(user)
-    }
-    if(laptop){
-      addNewData(laptop)
     }
 
   }, []);
@@ -120,6 +171,10 @@ export const UserForm = () => {
     const filteredValue = params[0].filter(option => option.name === value)
     setUserForm({ ...userForm, team_id: filteredValue[0].id })
     setTeamName(value)
+    setErrors({
+      ...errors,
+      teamError: false
+    })
     setFilteredPositionOptions(filteredValue[0].position_id)
 
   }
@@ -131,96 +186,105 @@ export const UserForm = () => {
     }
     const filteredValue = filteredPositionOptions.filter(option => option.name === value)
     setPositionName(value)
+    setErrors({
+      ...errors,
+      positionError: false
+    })
     setUserForm({
       ...userForm,
       position_id: filteredValue[0].id
     })
-
   }
 
   return (
-     <div className={styles.userForm}>
-       <BackButton onClick={()=>navigate('/')}/>
-       <div className={styles.nav}>
-         <div ><h3>თანამშრომლის ინფო</h3></div>
-         <div className={styles.laptopHide}><h3>ლეპტოპის მახასიათებლები</h3></div>
-         <h6 className={styles.pages}>1/2</h6>
-       </div>
-       <div className={styles.line}/>
-       <div className={styles.form}>
-         <form onSubmit={addUser}>
-
-           <div className={styles.userInfo}>
+      <div className={styles.userForm}>
+        <BackButton onClick={() => navigate('/')}/>
+        <div className={styles.nav}>
+          <div><h3>თანამშრომლის ინფო</h3></div>
+          <div className={styles.laptopHide}><h3>ლეპტოპის მახასიათებლები</h3></div>
+          <h6 className={styles.pages}>1/2</h6>
+        </div>
+        <div className={styles.line}/>
+        <div className={styles.form}>
+          <form onSubmit={addUser}>
+            <div className={styles.userInfo}>
               <Input
-                 title="სახელი"
-                 type="text"
-                 name="name"
-                 value={name}
-                 placeholder="გრიშა"
-                 onHandleChange={handleChange}
-                 hint="მინიმუმ 2 სიმბოლო, ქართული ასოები"
-                 top="0px"
-                 left="0px"
-             />
-             <Input
-                 title="გვარი"
-                 type="text"
-                 name="surname"
-                 value={surname}
-                 placeholder="ბაგრატიონი"
-                 onHandleChange={handleChange}
-                 hint="მინიმუმ 2 სიმბოლო, ქართული ასოები"
-                 top="0px"
-                 left="550px"
-             />
-           </div>
+                  title="სახელი"
+                  type="text"
+                  name="name"
+                  error={errors.nameError}
+                  value={name}
+                  placeholder="გრიშა"
+                  onHandleChange={handleChange}
+                  hint="მინიმუმ 2 სიმბოლო, ქართული ასოები"
+                  top="0px"
+                  left="0px"
+              />
+              <Input
+                  title="გვარი"
+                  type="text"
+                  name="surname"
+                  value={surname}
+                  error={errors.surnameError}
+                  placeholder="ბაგრატიონი"
+                  onHandleChange={handleChange}
+                  hint="მინიმუმ 2 სიმბოლო, ქართული ასოები"
+                  top="0px"
+                  left="550px"
+              />
+            </div>
 
 
+            <div className={styles.team}>
+              <select style={errors.teamError ? { border: "1.8px solid #E52F2F" } : {}}
+                      className={styles.selectTeam} value={teamName} onChange={selectedTeam}>
+                <option>თიმი</option>
+                {params[0]?.map((param) => <option className={styles.selectTeams} key={param.id}
+                                                   value={param?.name}>{param?.name}</option>)}
+              </select>
+            </div>
 
-          <div className={styles.team}>
-            <select className={styles.selectTeam} value={teamName} onChange={selectedTeam}>
-              <option>თიმი</option>
-              {params[0]?.map((param) => <option className={styles.selectTeams} key={param.id} value={param?.name}>{param?.name}</option>)}
-            </select>
-          </div>
+            <div className={styles.position}>
+              <select style={errors.teamError ? { border: "1.8px solid #E52F2F" } : {}}
+                      className={styles.selectPosition} value={positionName} onChange={selectPosition}>
+                <option>{positionName ? `${positionName}` : 'პოზიცია'}</option>
+                {filteredPositionOptions?.map((position) => <option className={styles.selectPositions}
+                                                                    key={position.id}
+                                                                    value={position?.name}>{position?.name}</option>)}
+              < /select>
+            </div>
 
-          <div className={styles.position}>
-            <select className={styles.selectPosition} value={positionName} onChange={selectPosition}>
-              <option>{positionName ? `${positionName}` : 'პოზიცია'}</option>
-              {filteredPositionOptions?.map((position) => <option className={styles.selectPositions} key={position.id}
-                                                                  value={position?.name}>{position?.name}</option>)}
-            < /select>
-          </div>
-
-           <Input
-               title="მეილი"
-               type="email"
-               name="email"
-               value={email}
-               placeholder="grisha666@redberry.ge"
-               onHandleChange={handleChange}
-               hint="უნდა მთავრდებოდეს @redberry.ge-ით"
-               top="500px"
-               left="150px"
-               width="878px"
-           />
-
-           <Input
-               title="ტელეფონის ნომერი"
-               type="text"
-               name="phone_number"
-               value={phone_number}
-               placeholder="+995 590 00 07 01"
-               onHandleChange={handleChange}
-               hint="უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს"
-               top="650px"
-               left="150px"
-               width="878px"
+            <Input
+                title="მეილი"
+                type="email"
+                name="email"
+                value={email}
+                error={errors.emailError}
+                placeholder="grisha666@redberry.ge"
+                onHandleChange={handleChange}
+                hint="უნდა მთავრდებოდეს @redberry.ge-ით"
+                top="500px"
+                left="150px"
+                width="878px"
             />
-           <Button top="809px" width="176px" left="875px">შემდეგი</Button>
-         </form>
-       </div>
-      <Logo />
-     </div>
+
+            <Input
+                title="ტელეფონის ნომერი"
+                type="text"
+                name="phone_number"
+                value={phone_number}
+                error={errors.phone_numberError}
+                placeholder="+995 590 00 07 01"
+                onHandleChange={handleChange}
+                hint="უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს"
+                top="650px"
+                left="150px"
+                width="878px"
+            />
+            <Button top="809px" width="176px" left="875px">შემდეგი</Button>
+          </form>
+        </div>
+        <Logo/>
+      </div>
   )
 }
