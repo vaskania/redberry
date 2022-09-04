@@ -9,6 +9,7 @@ import styles from "./LaptopForm.module.css";
 import Button from "../../components/Button/Button";
 import Logo from "../../components/Logo1/Logo";
 import Input from "../../components/Input/Input";
+import Radio from "../../components/Radio/Radio";
 
 export const LaptopForm = () => {
   const initialState = {
@@ -63,12 +64,22 @@ export const LaptopForm = () => {
 
   const handleChange = (data) => {
     const {name, value} = data
+    console.log(name)
+    console.log(value)
     if (name === 'laptop_cpu_cores' || name === 'laptop_cpu_threads' || name === 'laptop_ram' || name === 'laptop_price') {
       localStorage.setItem('laptop', JSON.stringify({ ...laptopDetails, [name]: value }))
       addNewData({ [name]: +value.trim()})
       return setLaptopDetails({
         ...laptopDetails,
         [name]: +value.trim()
+      });
+    }
+    if(name === "laptop_hard_drive_type" || name === "laptop_state" ){
+      localStorage.setItem('laptop', JSON.stringify({ ...laptopDetails, [name]: value }))
+      addNewData({ [name]: value})
+      return setLaptopDetails({
+        ...laptopDetails,
+        [name]: value
       });
     }
     localStorage.setItem('laptop', JSON.stringify({ ...laptopDetails, [name]: value }))
@@ -88,7 +99,7 @@ export const LaptopForm = () => {
       [e.target.name]: value
     });
   }
-
+  console.log(laptopDetails)
   const selectBrand = (e) => {
 
     const { value } = e.target;
@@ -284,10 +295,24 @@ export const LaptopForm = () => {
 
          <div className={styles.hdContainer}>
            <label className={styles.hdType}>მეხსიერების ტიპი</label>
-           <input className={styles.ssdType} type="radio" name='laptop_hard_drive_type' id="SSD" checked={laptop_hard_drive_type === 'SSD'} value='SSD'
-                  onChange={handleRadio}/> <label htmlFor="SSD" className={styles.ssdLabel}>SSD</label>
-           <input className={styles.hddType} type="radio" name='laptop_hard_drive_type' id="HDD" value='HDD' checked={laptop_hard_drive_type === "HDD"}
-                  onChange={handleRadio}/> <label htmlFor='HDD' className={styles.hddLabel}>HDD</label>
+           <Radio
+               title="SSD"
+               value="SSD"
+               name="laptop_hard_drive_type"
+               top="25px"
+               checked={laptop_hard_drive_type}
+               left="-15px"
+               handleChange={handleChange}
+           />
+           <Radio
+               title="HDD"
+               value="HDD"
+               name="laptop_hard_drive_type"
+               checked={laptop_hard_drive_type}
+               top="-5px"
+               left="150px"
+               handleChange={handleChange}
+           />
          </div>
 
          <div className={styles.line2}/>
@@ -317,11 +342,24 @@ export const LaptopForm = () => {
          />
 
          <div className={styles.condition}>
-           <label className={styles.conditionLabel}>ლეპტოპის მდგომარეობა</label>
-           <input className={styles.new} type="radio" name='laptop_state' id="new" value='new' checked={laptop_state === 'new'} onChange={handleRadio}/>
-           <label className={styles.newLabel} htmlFor="new">ახალი</label>
-           <input className={styles.used} id="used" type="radio" name='laptop_state' value='used' checked={laptop_state === 'used'}
-                  onChange={handleRadio}/> <label className={styles.usedLabel} htmlFor="used">მეორადი</label>
+           <Radio
+               title="ახალი"
+               value="new"
+               name="laptop_state"
+               top="25px"
+               checked={laptop_state}
+               left="-15px"
+               handleChange={handleChange}
+           />
+           <Radio
+               title="მეორადი"
+               value="used"
+               name="laptop_state"
+               checked={laptop_state}
+               top="-5px"
+               left="150px"
+               handleChange={handleChange}
+            />
          </div>
 
          <div className={styles.btnBack} onChange={toggleActive}>უკან</div>
