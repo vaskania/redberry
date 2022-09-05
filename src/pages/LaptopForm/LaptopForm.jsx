@@ -66,7 +66,7 @@ export const LaptopForm = () => {
 
 
   const selectFile = (file) => {
-    if (file.type !== 'image/png' && file.type !== 'image/jpeg') {
+    if (file.type !== 'image/png' && file.type !== 'image/jpeg' || file.size > 1048576) {
       setLaptopErrors({
         ...laptopErrors,
         laptop_imageError: true
@@ -228,7 +228,10 @@ export const LaptopForm = () => {
 
   function convertImageName(name) {
 
-    if (!name || name.length <= 30) return
+    if (!name || name.length <= 30) {
+      console.log('patalaa')
+      return name
+    }
 
     const fileNameCompression = name.slice(0, 26)
     const fileName = name.split('.')
@@ -248,7 +251,7 @@ export const LaptopForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      if (!laptop_image) {
+      if (!laptop_image || laptop_image.size > 1048576) {
         laptopErrors.laptop_imageError = true
       }
       if (!fileNameRegEx.test(laptopDetails.laptop_name) || laptopDetails.laptop_name.length === 0) {
@@ -325,7 +328,7 @@ export const LaptopForm = () => {
              />}
              {url &&
                 <div className={styles.fileInfo}>
-                  <div >
+                  <div>
                     <Success/>{convertImageName(laptop_image.name)}, <span
                      className={styles.size}>{calculateFileSize(laptop_image.size)} mb</span>
                   </div>
