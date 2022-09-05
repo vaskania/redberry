@@ -299,6 +299,8 @@ export const LaptopForm = () => {
     await sendData(data)
     localStorage.removeItem('user')
     localStorage.removeItem('laptop')
+    localStorage.removeItem('userErrors')
+    localStorage.removeItem('laptopErrors')
     navigate('/success')
   }
   if (loading) return
