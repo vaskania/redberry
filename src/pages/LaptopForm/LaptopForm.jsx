@@ -30,7 +30,7 @@ export const LaptopForm = () => {
     laptop_state: ''
   }
 
-  const { data: brands, loading, error } = useFetch(`${process.env.REACT_APP_URL}/brands`)
+  const { data: brands, loading } = useFetch(`${process.env.REACT_APP_URL}/brands`)
   const { data: cpus } = useFetch(`${process.env.REACT_APP_URL}/cpus`)
   const [laptopDetails, setLaptopDetails] = useState(initialState)
   const [url, setUrl] = useState()
@@ -66,7 +66,7 @@ export const LaptopForm = () => {
 
 
   const selectFile = (file) => {
-    if (file.type !== 'image/png' && file.type !== 'image/jpeg' || file.size > 1048576) {
+    if ((file.type !== 'image/png' && file.type !== 'image/jpeg') || file.size > 1048576) {
       setLaptopErrors({
         ...laptopErrors,
         laptop_imageError: true
@@ -96,7 +96,7 @@ export const LaptopForm = () => {
         laptopErrors.laptop_cpu_threadsError = value === 0 || !value;
       }
       if (name === 'laptop_ram') {
-        laptopErrors.laptop_ramError = value == 0 || !value;
+        laptopErrors.laptop_ramError = value === 0 || !value;
       }
       if (name === 'laptop_price') {
         laptopErrors.laptop_priceError = value === 0 || !value;
@@ -249,58 +249,58 @@ export const LaptopForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-      if (!laptop_image || laptop_image.size > 1048576) {
-        laptopErrors.laptop_imageError = true
+    if (!laptop_image || laptop_image.size > 1048576) {
+      laptopErrors.laptop_imageError = true
+    }
+    if (!fileNameRegEx.test(laptopDetails.laptop_name) || laptopDetails.laptop_name.length === 0) {
+      laptopErrors.laptop_nameError = true
+    }
+    if (!laptop_brand_id) {
+      laptopErrors.laptop_brand_idError = true
+    }
+    if (!laptop_cpu) {
+      laptopErrors.laptop_cpuError = true
+    }
+    if (laptop_cpu_cores === 0 || !laptop_cpu_cores) {
+      laptopErrors.laptop_cpu_coresError = true
+    }
+    if (laptop_cpu_threads === 0 || !laptop_cpu_threads) {
+      laptopErrors.laptop_cpu_threadsError = true
+    }
+    if (laptop_ram === 0 || !laptop_ram) {
+      laptopErrors.laptop_ramError = true
+    }
+    if (!laptop_hard_drive_type) {
+      laptopErrors.laptop_hard_drive_typeError = true
+    }
+    if (laptop_price === 0) {
+      laptopErrors.laptop_priceError = true
+    }
+    if (!laptop_state) {
+      laptopErrors.laptop_stateError = true
+    }
+    setLaptopErrors({
+      ...laptopErrors
+    })
+    const errorValues = Object.values(laptopErrors)
+    let errorExists = false
+    for (let i = 0; i < errorValues.length; i++) {
+      if (errorValues[i]) {
+        errorExists = true
+        break;
       }
-      if (!fileNameRegEx.test(laptopDetails.laptop_name) || laptopDetails.laptop_name.length === 0) {
-        laptopErrors.laptop_nameError = true
-      }
-      if (!laptop_brand_id) {
-        laptopErrors.laptop_brand_idError = true
-      }
-      if (!laptop_cpu) {
-        laptopErrors.laptop_cpuError = true
-      }
-      if (laptop_cpu_cores === 0 || !laptop_cpu_cores) {
-        laptopErrors.laptop_cpu_coresError = true
-      }
-      if (laptop_cpu_threads === 0 || !laptop_cpu_threads) {
-        laptopErrors.laptop_cpu_threadsError = true
-      }
-      if (laptop_ram === 0 || !laptop_ram) {
-        laptopErrors.laptop_ramError = true
-      }
-      if (!laptop_hard_drive_type) {
-        laptopErrors.laptop_hard_drive_typeError = true
-      }
-      if (laptop_price === 0) {
-        laptopErrors.laptop_priceError = true
-      }
-      if (!laptop_state) {
-        laptopErrors.laptop_stateError = true
-      }
-      setLaptopErrors({
-        ...laptopErrors
-      })
-      const errorValues = Object.values(laptopErrors)
-      let errorExists = false
-      for (let i = 0; i < errorValues.length; i++) {
-        if (errorValues[i]) {
-          errorExists = true
-          break;
-        }
-      }
-      localStorage.setItem('laptopErrors', JSON.stringify(laptopErrors))
-      if (errorExists) {
-        return;
-      }
-      delete data.positionName
-      delete data.teamName
-      await sendData(data)
-      localStorage.removeItem('user')
-      localStorage.removeItem('laptop')
-      navigate('/success')
-   }
+    }
+    localStorage.setItem('laptopErrors', JSON.stringify(laptopErrors))
+    if (errorExists) {
+      return;
+    }
+    delete data.positionName
+    delete data.teamName
+    await sendData(data)
+    localStorage.removeItem('user')
+    localStorage.removeItem('laptop')
+    navigate('/success')
+  }
   if (loading) return
 
   return (

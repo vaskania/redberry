@@ -23,14 +23,14 @@ export const LaptopsList = () => {
     // eslint-disable-next-line
   }, [])
 
-  if (!products.data) return <h5>loading</h5>
+  if (!products.data) return <h1>DIDI YLINJI</h1>
 
   return (
      <div className={styles.container}>
        <BackButton onClick={back} />
        <h3 className={styles.header} >ჩანაწერების სია</h3>
        <div className={styles.list}>
-         {products?.data.map(product => <LaptopItem key={product.laptop.id} data={product}/>)}
+         {products?.data.map(product => <LaptopItem key={product?.laptop.id} data={product}/>)}
        </div>
 
      </div>

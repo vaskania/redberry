@@ -15,7 +15,7 @@
 }
 
 .img {
-    position: relative;
+    position: absolute;
     width: 266px;
     left: 14px;
     top: 14px;
@@ -23,6 +23,11 @@
 
     /*background: url(.jpg), #D9D9D9;*/
     border-radius: 10px;
+}
+
+.info{
+    position: absolute;
+    left: 40px;
 }
 
 .name {
