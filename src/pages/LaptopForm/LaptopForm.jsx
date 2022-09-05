@@ -32,7 +32,7 @@ export const LaptopForm = () => {
   const [laptopDetails, setLaptopDetails] = useState(initialState)
   const [url, setUrl] = useState()
   const [laptopErrors, setLaptopErrors] = useState({
-    laptop_nameError: true,
+    laptop_nameError: false,
     laptop_imageError: false,
     laptop_brand_idError: false,
     laptop_cpuError: false,
@@ -44,7 +44,7 @@ export const LaptopForm = () => {
     laptop_priceError: false,
     laptop_stateError: false
   })
-  const { data, toggleActive, addNewData } = useContext(AppContext)
+  const { data, addNewData } = useContext(AppContext)
   const navigate = useNavigate()
 
   const {
@@ -94,7 +94,6 @@ export const LaptopForm = () => {
       }
       if (name === 'laptop_ram') {
         laptopErrors.laptop_ramError = value == 0 || !value;
-        console.log(value)
       }
       if (name === 'laptop_price') {
         laptopErrors.laptop_priceError = value === 0 || !value;
@@ -132,7 +131,6 @@ export const LaptopForm = () => {
   }
 
   const selectBrand = (e) => {
-
     const { value } = e.target;
 
     if (value === '') {
@@ -147,9 +145,11 @@ export const LaptopForm = () => {
       })
       return;
     }
+
     laptopErrors.laptop_brand_idError = false
     setLaptopErrors(laptopErrors)
     localStorage.setItem('laptopErrors', JSON.stringify(laptopErrors))
+
     const filtered = brands.data.filter(brand => brand.id === +value)
     addNewData({ laptop_brand_id: filtered[0].id })
     setLaptopDetails({ ...laptopDetails, laptop_brand_id: filtered[0].id })
@@ -161,8 +161,8 @@ export const LaptopForm = () => {
   }
 
   const selectCpu = (e) => {
-
     const { value } = e.target
+
     if (value === '') {
       setLaptopDetails({
         ...laptopDetails,
@@ -185,6 +185,10 @@ export const LaptopForm = () => {
       laptop_cpu: value
     }))
 
+  }
+
+  const goToUserForm =() => {
+    navigate('/user/create')
   }
 
   useEffect(() => {
@@ -212,7 +216,6 @@ export const LaptopForm = () => {
       const res = await axios.post(`${process.env.REACT_APP_URL}/laptop/create`, data,
           { headers: { "Content-Type": "multipart/form-data" } }
       )
-      console.log(res)
       return res
     } catch (e) {
       console.log(e)
@@ -253,7 +256,6 @@ export const LaptopForm = () => {
       if (!laptop_state) {
         laptopErrors.laptop_stateError = true
       }
-      console.log(laptopErrors)
       const errorValues = Object.values(laptopErrors)
       let errorExists = false
       for (let i = 0; i < errorValues.length; i++) {
@@ -262,7 +264,7 @@ export const LaptopForm = () => {
           break;
         }
       }
-      console.log(errorExists)
+
       setLaptopErrors(laptopErrors)
       localStorage.setItem('laptopErrors', JSON.stringify(laptopErrors))
       if (errorExists) {
@@ -280,9 +282,7 @@ export const LaptopForm = () => {
 
   }
 
-  if (loading) return <h1>loading ...</h1>
-
-  if (error) console.log(error)
+  if (loading) return
 
   return (
       <div className={styles.laptopForm}>
@@ -325,7 +325,6 @@ export const LaptopForm = () => {
               <select style={laptopErrors.laptop_brand_idError ? { "border": "1px solid red" } : {}}
                       className={styles.selectLaptopBrand} value={laptop_brand_id} onChange={selectBrand}>
                 <option value=''>ლეპტოპის ბრენდი</option>
-                {/*<option>{brandName ? `${brandName}` : "ლეპტოპის ბრენდი"}</option>*/}
                 {brands?.data?.map(brand => <option className={styles.selectLaptopBrands} key={brand?.id}
                                                     value={brand?.id}>{brand.name}</option>)}
               </select>
@@ -438,6 +437,8 @@ export const LaptopForm = () => {
             />
 
             <div className={styles.condition}>
+              <label className={styles.conditionLabel}
+                     style={laptopErrors.laptop_stateError ? { color: "red" } : {}}>ლეპტოპის მდგომარეობა</label>
               <Radio
                   title="ახალი"
                   value="new"
@@ -458,7 +459,7 @@ export const LaptopForm = () => {
               />
             </div>
 
-            <div className={styles.btnBack} onChange={toggleActive}>უკან</div>
+            <div className={styles.btnBack} onClick={goToUserForm}>უკან</div>
             <Button type='submit' top="1397px" left="840px" width="219px">დამახსოვრება</Button>
           </form>
           <Logo top="1500px"/>

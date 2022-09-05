@@ -1,10 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { AppContext } from "../../context/app.context";
 import { ReactComponent as Success } from "../../assets/Success.svg";
 import styles from './SuccessPage.module.css'
 import Button from "../../components/Button/Button";
-
 
 export const SuccessPage = () => {
   const navigate = useNavigate()

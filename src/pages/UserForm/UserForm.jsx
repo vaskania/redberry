@@ -176,7 +176,6 @@ export const UserForm = () => {
       teamError: false
     })
     setFilteredPositionOptions(filteredValue[0].position_id)
-
   }
 
   const selectPosition = (e) => {

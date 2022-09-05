@@ -5,7 +5,6 @@ import styles from './LaptopList.module.css'
 import BackButton from "../../components/BackButton/BackButton";
 import { useNavigate } from "react-router-dom";
 
-
 export const LaptopsList = () => {
   const token = process.env.REACT_APP_TOKEN
   const url = `https://pcfy.redberryinternship.ge/api/laptops?token=${token}`
@@ -13,7 +12,6 @@ export const LaptopsList = () => {
 
   const navigate = useNavigate()
   const back = () => navigate('/')
-
 
   const getData = async () => {
     const { data } = await axios.get(url, { headers: { "Authorization": `Bearer ${token}` } })

@@ -17,9 +17,7 @@ export const LaptopDetail = () => {
 
   const back = () => navigate('/laptops')
 
-  if (loading) return <h2>Loading ...</h2>
-
-  if (error) console.log(error)
+  if (loading) return
 
   return (
      <div className={styles.container}>

@@ -16,7 +16,6 @@ const LaptopItem = ({ data }) => {
        <img src={laptop.image} alt={laptop.name} className={styles.img}/>
        <ReversedButton
           onClick={getDetails}
-          style={{color:"red"}}
        >მეტის ნახვა</ReversedButton>
      </div>
   );

@@ -1,7 +1,6 @@
 import styles from './Radio.module.css'
 
 const Radio = ({ ...props }) => {
-    const { error } = props
     const onChange = (e) => {
         return props.handleChange({ name: e.target.name, value: e.target.value })
     }
@@ -17,8 +16,7 @@ const Radio = ({ ...props }) => {
                     onChange={onChange}/>
                 <label htmlFor={props.value}></label>
             </div>
-            <label className={styles.radioLabel} htmlFor={props.value}
-                   style={error ? { color: "red" } : {}}>{props.title}</label>
+            <label className={styles.radioLabel} htmlFor={props.value}>{props.title}</label>
         </div>
 
     );
