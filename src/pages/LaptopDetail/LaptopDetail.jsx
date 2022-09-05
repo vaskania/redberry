@@ -11,13 +11,13 @@ export const LaptopDetail = () => {
   const url =  process.env.REACT_APP_URL
 
   const { data: brands, } = useFetch(`${process.env.REACT_APP_URL}/brands`)
-  const { data, loading, error } = useFetch(`${url}/laptop/${id}?token=${process.env.REACT_APP_TOKEN}`)
+  const { data, loading } = useFetch(`${url}/laptop/${id}?token=${process.env.REACT_APP_TOKEN}`)
   const { data: team } = useFetch(`${url}/teams`)
   const { data: position } = useFetch(`${url}/positions`)
 
   const back = () => navigate('/laptops')
 
-  if (loading) return
+  if (loading) return <></>
 
   return (
      <div className={styles.container}>
