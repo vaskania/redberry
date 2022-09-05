@@ -65,11 +65,20 @@
     position: absolute;
     display: flex;
     flex-direction: row;
-    border: 1px solid red;
     width: 870px;
     height: 60px;
     top:410px;
     left: 0px
+}
+
+.size{
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #5F5F5F;
 }
 
 .laptopBrand {

@@ -239,7 +239,10 @@ export const LaptopForm = () => {
   }
 
   function calculateFileSize(size) {
-    console.log(size / 1048576)
+    if (!size) return
+    const number = size / 1048576
+    return number.toFixed(2)
+
   }
 
   const handleSubmit = async (e) => {
@@ -322,8 +325,9 @@ export const LaptopForm = () => {
              />}
              {url &&
                 <div className={styles.fileInfo}>
-                  <div>
-                    <Success/>{convertImageName(laptop_image.name)}, <span>{calculateFileSize(laptop_image.size)}</span>
+                  <div >
+                    <Success/>{convertImageName(laptop_image.name)}, <span
+                     className={styles.size}>{calculateFileSize(laptop_image.size)} mb</span>
                   </div>
                   <UploadButton
                      position="absolute"
