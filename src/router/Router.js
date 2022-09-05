@@ -9,7 +9,7 @@ import PageNotFound from "../pages/PageNotFound/PageNotFound";
 
 export const Router = () => (
    <Routes>
-     <Route path='/' element={<Landing/>}/>
+     <Route path='/' index element={<Landing/>}/>
      <Route path='user/create' element={<UserForm/>}/>
      <Route path='laptop/create' element={<LaptopForm/>}/>
      <Route path='/laptops' element={<LaptopsList/>}/>

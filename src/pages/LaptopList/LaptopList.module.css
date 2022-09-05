@@ -6,7 +6,7 @@
 }
 
 
-.section {
+.title {
     position: relative;
     width: 312px;
     height: 21px;
@@ -33,16 +33,30 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     gap: 100px;
     padding: 0px 0px;
     box-sizing: border-box;
-    border: 1px solid red;
     margin-bottom: 300px;
 }
 
 .list:after {
     content: '';
     width: 693px;
+}
+
+.dataNotFound{
+    position: relative;
+    left: 754px;
+    top: 279px;
+
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 21px;
+    /* identical to box height, or 62% */
+    color: red;
 }
 
 @media screen and (max-width: 390px) {

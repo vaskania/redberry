@@ -23,16 +23,23 @@ export const LaptopsList = () => {
     // eslint-disable-next-line
   }, [])
 
-  if (!products.data) return <h1>DIDI YLINJI</h1>
+  if (!products.data) return
+  if(!products ) return   (
+      <div className={styles.container}>
+          <BackButton onClick={back} />
+          <h3 className={styles.title} >ჩანაწერების სია</h3>
+          <h3 className={styles.dataNotFound}>ჩანაწერი არ მოიძებნა</h3>
+      </div>
+  )
+
 
   return (
      <div className={styles.container}>
        <BackButton onClick={back} />
-       <h3 className={styles.section} >ჩანაწერების სია</h3>
+       <h3 className={styles.title} >ჩანაწერების სია</h3>
        <div className={styles.list}>
          {products?.data.map(product => <LaptopItem key={product?.laptop.id} data={product}/>)}
        </div>
-
      </div>
   )
 }
