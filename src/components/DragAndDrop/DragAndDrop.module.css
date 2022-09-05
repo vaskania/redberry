@@ -1,0 +1,42 @@
+.container{
+    box-sizing: border-box;
+
+    position: relative;
+    height: 423px;
+    width: 878px;
+    left: 174px;
+    background: #F7F7F7;
+    /* ლურჯი/700 */
+
+    border: 2px dashed #4386A9;
+    border-radius: 18px;
+}
+
+.dropContainer{
+    position: relative;
+    height: 423px;
+    width: 878px;
+    border: 1px solid red;
+}
+
+.label{
+    position: absolute;
+    width: 195px;
+    height: 76px;
+    left: calc(50% - 195px/2 + 0.5px);
+    top: 85px;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 38px;
+    /* or 190% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* ლურჯი/700 */
+
+    color: #4386A9;
+}

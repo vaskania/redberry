@@ -1,6 +1,5 @@
-import {useDropzone} from 'react-dropzone'
 import styles from './UploadButton.module.css'
-import {useEffect, useCallback} from "react";
+import {useEffect} from "react";
 
 
 const UploadButton = ({file, selectFile,setFile, setUrl,...props}) => {
@@ -9,19 +8,16 @@ const UploadButton = ({file, selectFile,setFile, setUrl,...props}) => {
         const file = e.target.files[0]
          return  selectFile(file)
     }
-
-    useEffect(()=> {
-        if(file.length <1) return
-        return  setUrl(URL.createObjectURL(file))
-    },[file])
+    //
+    // useEffect(()=> {
+    //     if(file.length <1) return
+    //     return  setUrl(URL.createObjectURL(file))
+    // },[file])
     return (
-        <div className={styles.container} style={{...props}}>
-            <div className={styles.fileInput}>
-                <label className={styles.imgLabel}>ჩააგდე და ატვირთე ლეპტოპის ფოტო</label>
+            <div className={styles.fileInput} style={{...props}}>
                 <input className={styles.input} type="file" onChange={uploadHandler}/>
                 <button type="button" className={styles.uploadButton}>ატვირთე</button>
             </div>
-        </div>
     );
 };
 
