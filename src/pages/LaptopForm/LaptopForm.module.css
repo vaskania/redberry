@@ -1,4 +1,4 @@
-.laptopForm{
+.laptopForm {
     position: relative;
     width: 1920px;
     height: 1921px;
@@ -11,13 +11,14 @@
     display: flex;
     gap: 100px;
     top: 75px;
-    left:685px;
+    left: 685px;
 }
-.pages{
+
+.pages {
     display: none;
 }
 
-.line{
+.line {
     position: absolute;
     width: 263px;
     height: 0px;
@@ -49,17 +50,29 @@
     justify-content: center;
     align-items: center;
 }
+
 .image {
     position: relative;
     display: block;
-    margin:auto;
+    margin: auto;
     max-width: 100%;
     max-height: 100%;
     height: auto;
-
+    top: -40px
 }
 
-.laptopBrand{
+.fileInfo {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid red;
+    width: 870px;
+    height: 60px;
+    top:410px;
+    left: 0px
+}
+
+.laptopBrand {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -68,10 +81,11 @@
     position: absolute;
     width: 456px;
     height: 76px;
-    left: calc(50% - 456px/2 + 235px);
+    left: calc(50% - 456px / 2 + 235px);
     top: 563px;
 }
-.selectLaptopBrand{
+
+.selectLaptopBrand {
 
     width: 408px;
     height: 60px;
@@ -87,12 +101,13 @@
     flex-grow: 0;
     border: none;
 }
-.selectLaptopBrands{
+
+.selectLaptopBrands {
     position: absolute;
     height: 21px;
     left: 16px;
     right: 83px;
-    top: calc(50% - 21px/2 - 0.5px);
+    top: calc(50% - 21px / 2 - 0.5px);
 
     font-family: 'Helvetica Neue';
     font-style: normal;
@@ -108,7 +123,7 @@
     color: #000000;
 }
 
-.line1{
+.line1 {
     position: absolute;
     height: 0px;
     left: 174px;
@@ -120,7 +135,7 @@
     border: 1px solid #C7C7C7;
 }
 
-.cpu{
+.cpu {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -129,10 +144,11 @@
     position: absolute;
     width: 325px;
     height: 76px;
-    left: calc(50% - 325px/2 - 300.5px);
+    left: calc(50% - 325px / 2 - 300.5px);
     top: 782px;
 }
-.selectCpu{
+
+.selectCpu {
     width: 277px;
     height: 60px;
 
@@ -145,14 +161,15 @@
     order: 0;
     align-self: stretch;
     flex-grow: 0;
-    border:none;
+    border: none;
 }
-.selectCpus{
+
+.selectCpus {
     position: absolute;
     height: 21px;
     left: 16px;
     right: 83px;
-    top: calc(50% - 21px/2 - 0.5px);
+    top: calc(50% - 21px / 2 - 0.5px);
 
     font-family: 'Helvetica Neue';
     font-style: normal;
@@ -169,15 +186,15 @@
 }
 
 
-.hdContainer{
+.hdContainer {
     position: absolute;
-    top:925px;
-    left:650px;
+    top: 925px;
+    left: 650px;
     width: 300px;
     height: 100px;
 }
 
-.hdType{
+.hdType {
     position: relative;
     width: 163px;
     height: 21px;
@@ -197,7 +214,12 @@
     color: #000000;
 }
 
-.line2{
+.radioLabel {
+    display: flex;
+    flex-direction: row;
+}
+
+.line2 {
     position: absolute;
     height: 0px;
     left: 174px;
@@ -209,14 +231,15 @@
     border: 1px solid #C7C7C7;
 }
 
-.condition{
+.condition {
     position: absolute;
-    top:1300px;
+    top: 1300px;
     left: 170px;
-    width:300px;
+    width: 300px;
     height: 100px;
 }
-.conditionLabel{
+
+.conditionLabel {
     position: relative;
     font-family: 'Helvetica Neue';
     font-style: normal;
@@ -231,7 +254,7 @@
     color: #000000;
 }
 
-.btnBack{
+.btnBack {
     position: absolute;
     width: 45px;
     height: 21px;

@@ -1,30 +1,31 @@
-import {useDropzone} from 'react-dropzone'
-import {useState} from "react";
+import { useDropzone } from 'react-dropzone'
+import { useEffect, useState } from "react";
 import styles from "./DragAndDrop.module.css";
+import Alert2 from "../Alert2/Alert2";
 
-const DragAndDrop = ({file, selectFile,setFile, setUrl,...props}) => {
-    const [file, setFile] = useState([])
-    const {getRootProps, getInputProps} = useDropzone({
-        accept: "image/*",
-        onDrop: (acceptedFiles) =>{
-            setFile(
-                acceptedFiles.map(file=> Object.assign(file, {
-                    preview:URL.createObjectURL(file)
-                }))
-            )
-            console.log(acceptedFiles)
-        }
+const DragAndDrop = ({  selectFile, setUrl, containerStyle, error }) => {
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptedFiles => {
+      setUrl(URL.createObjectURL(acceptedFiles[0]))
+      return selectFile(acceptedFiles[0])
     })
-    return (
-        <div>
-            <div className={styles.container} style={{...props}}>
-                <div {...getRootProps()} className={styles.dropContainer}>
-                    <input {...getInputProps()} />
-                    <label className={styles.label}>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</label>
-                </div>
-               </div>
-        </div>
-    );
+  })
+  if (error) {
+    containerStyle["border"] = "1px dashed red"
+    containerStyle.background = "#FFF1F1"
+  }
+  return (
+     <div>
+       <div className={styles.container} style={{ ...containerStyle }}>
+         <div {...getRootProps()} className={styles.dropContainer}>
+           <input {...getInputProps()} />
+           {error && <div className={styles.errorAlert}><Alert2 /></div>}
+           <label className={styles.label} style={error ? { color: "red" } : {}}>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</label>
+         </div>
+       </div>
+     </div>
+  );
 };
 
 export default DragAndDrop;

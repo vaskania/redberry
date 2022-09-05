@@ -1,8 +1,8 @@
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
-import {AppContext} from "../../context/app.context";
-import {useNavigate} from "react-router-dom";
-import {fileNameRegEx} from '../../utils'
+import { AppContext } from "../../context/app.context";
+import { useNavigate } from "react-router-dom";
+import { fileNameRegEx } from '../../utils'
 import axios from "axios";
 import BackButton from "../../components/BackButton/BackButton";
 import styles from "./LaptopForm.module.css";
@@ -11,6 +11,9 @@ import Logo from "../../components/Logo1/Logo";
 import Input from "../../components/Input/Input";
 import Radio from "../../components/Radio/Radio";
 import UploadButton from "../../components/UploadButton/UploadButton";
+import DragAndDrop from "../../components/DragAndDrop/DragAndDrop";
+import Alert1 from "../../components/Alert1/Alert1";
+import Success from "../../components/Success/Success";
 
 export const LaptopForm = () => {
   const initialState = {
@@ -187,7 +190,7 @@ export const LaptopForm = () => {
 
   }
 
-  const goToUserForm =() => {
+  const goToUserForm = () => {
     navigate('/user/create')
   }
 
@@ -214,7 +217,7 @@ export const LaptopForm = () => {
   const sendData = async (data) => {
     try {
       const res = await axios.post(`${process.env.REACT_APP_URL}/laptop/create`, data,
-          { headers: { "Content-Type": "multipart/form-data" } }
+         { headers: { "Content-Type": "multipart/form-data" } }
       )
       return res
     } catch (e) {
@@ -223,13 +226,29 @@ export const LaptopForm = () => {
 
   }
 
+  function convertImageName(name) {
+
+    if (!name || name.length <= 30) return
+
+    const fileNameCompression = name.slice(0, 26)
+    const fileName = name.split('.')
+    const fileExtension = fileName[fileName.length - 1]
+    const arr = [fileNameCompression, '...', fileExtension]
+
+    return arr.join('')
+  }
+
+  function calculateFileSize(size) {
+    console.log(size / 1048576)
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       if (!laptop_image) {
         laptopErrors.laptop_imageError = true
       }
-      if (!fileNameRegEx.test(laptopDetails.laptop_name)) {
+      if (!fileNameRegEx.test(laptopDetails.laptop_name) || laptopDetails.laptop_name.length === 0) {
         laptopErrors.laptop_nameError = true
       }
       if (!laptop_brand_id) {
@@ -256,6 +275,9 @@ export const LaptopForm = () => {
       if (!laptop_state) {
         laptopErrors.laptop_stateError = true
       }
+      setLaptopErrors({
+        ...laptopErrors
+      })
       const errorValues = Object.values(laptopErrors)
       let errorExists = false
       for (let i = 0; i < errorValues.length; i++) {
@@ -264,8 +286,6 @@ export const LaptopForm = () => {
           break;
         }
       }
-
-      setLaptopErrors(laptopErrors)
       localStorage.setItem('laptopErrors', JSON.stringify(laptopErrors))
       if (errorExists) {
         return;
@@ -281,189 +301,225 @@ export const LaptopForm = () => {
     }
 
   }
-
   if (loading) return
 
   return (
-      <div className={styles.laptopForm}>
-        <BackButton onClick={() => navigate('/user/create')}/>
-        <div className={styles.nav}>
-          <div><h3>თანამშრომლის ინფო</h3></div>
-          <div className={styles.laptopHide}><h3>ლეპტოპის მახასიათებლები</h3></div>
-          <h6 className={styles.pages}>2/2</h6>
-        </div>
-        <div className={styles.line}/>
+     <div className={styles.laptopForm}>
+       <BackButton onClick={() => navigate('/user/create')}/>
+       <div className={styles.nav}>
+         <div><h3>თანამშრომლის ინფო</h3></div>
+         <div><h3>ლეპტოპის მახასიათებლები</h3></div>
+         <h6 className={styles.pages}>2/2</h6>
+       </div>
+       <div className={styles.line}/>
 
-        <div className={styles.form}>
-          <form onSubmit={handleSubmit}>
-            <div className={styles.img}>
-              {url && <img src={url} alt={url} className={styles.image}/>}
-              {!url && <UploadButton
-                  top="0px"
-                  left="0px"
-                  file={laptop_image}
-                  setUrl={setUrl}
-                  selectFile={selectFile}
-              />}
+       <div className={styles.form}>
+         <form onSubmit={handleSubmit}>
+           <div className={styles.img}>
+             {url && <img
+                src={url} alt={url}
+                className={styles.image}
+             />}
+             {url &&
+                <div className={styles.fileInfo}>
+                  <div>
+                    <Success/>{convertImageName(laptop_image.name)}, <span>{calculateFileSize(laptop_image.size)}</span>
+                  </div>
+                  <UploadButton
+                     position="absolute"
+                     top="-120px"
+                     left="990px"
+                     width="233px"
+                     file={laptop_image}
+                     setUrl={setUrl}
+                     selectFile={selectFile}
+                     title="თავიდან ატვირთე"
+                  />
+                </div>
+             }
+             {!url && <DragAndDrop
+                containerStyle={{
+                  left: "120px"
+                }}
+                file={laptop_image}
+                setUrl={setUrl}
+                selectFile={selectFile}
+                error={laptopErrors.laptop_imageError}
+             />}
+             {!url && <UploadButton
+                top="-40px"
+                left="-90px"
+                file={laptop_image}
+                setUrl={setUrl}
+                selectFile={selectFile}
+                title="ატვირთე"
+             />}
 
-            </div>
-            <Input
-                title="ლეპტოპის სახელი"
-                type="text"
-                name="laptop_name"
-                value={laptop_name}
-                placeholder="+995 590 00 07 01"
-                onHandleChange={handleChange}
-                error={laptopErrors.laptop_nameError}
-                hint="ლათინური ასოები, ციპრები, !@#$%^&*()_+"
-                top="540px"
+
+           </div>
+           <Input
+              title="ლეპტოპის სახელი"
+              type="text"
+              name="laptop_name"
+              value={laptop_name}
+              placeholder="+995 590 00 07 01"
+              onHandleChange={handleChange}
+              error={laptopErrors.laptop_nameError}
+              hint="ლათინური ასოები, ციპრები, !@#$%^&*()_+"
+              top="540px"
+              left="150px"
+              width="407px"
+           />
+
+           <div className={styles.laptopBrand}>
+             <select style={laptopErrors.laptop_brand_idError ? { "border": "1px solid red" } : {}}
+                     className={styles.selectLaptopBrand} value={laptop_brand_id} onChange={selectBrand}>
+               <option value=''>ლეპტოპის ბრენდი</option>
+               {brands?.data?.map(brand => <option className={styles.selectLaptopBrands} key={brand?.id}
+                                                   value={brand?.id}>{brand.name}</option>)}
+             </select>
+           </div>
+
+           <div className={styles.line1}/>
+
+           <div className={styles.cpu}>
+             <select style={laptopErrors.laptop_cpuError ? { "border": "1px solid red" } : {}}
+                     className={styles.selectCpu} value={laptop_cpu}
+                     onChange={selectCpu}>
+               <option value=''>CPU</option>
+               {cpus?.data?.map(cpu => <option className={styles.selectCpus} key={cpu?.id}
+                                               value={cpu?.name}>{cpu.name}</option>)}
+             </select>
+           </div>
+
+           <Input
+              title="CPU-ს ბირთვი"
+              type="number"
+              name="laptop_cpu_cores"
+              value={laptop_cpu_cores}
+              placeholder="22"
+              onHandleChange={handleChange}
+              error={laptopErrors.laptop_cpu_coresError}
+              hint="მხოლოდ ციფრები"
+              top="760px"
+              left="450px"
+              width="276px"
+           />
+
+           <Input
+              title="CPU-ს ნაკადი"
+              type="number"
+              name="laptop_cpu_threads"
+              value={laptop_cpu_threads}
+              placeholder="365"
+              onHandleChange={handleChange}
+              error={laptopErrors.laptop_cpu_threadsError}
+              hint="მხოლოდ ციფრები"
+              top="760px"
+              left="750px"
+              width="276px"
+           />
+
+           <Input
+              title="RAM"
+              type="number"
+              name="laptop_ram"
+              value={laptop_ram}
+              placeholder="16"
+              onHandleChange={handleChange}
+              error={laptopErrors.laptop_ramError}
+              hint="მხოლოდ ციფრები"
+              top="930px"
+              left="150px"
+              width="407px"
+           />
+
+           <div className={styles.hdContainer}>
+             <div className={styles.radioLabel}>
+               <label className={styles.hdType}
+                      style={laptopErrors.laptop_hard_drive_typeError ? { color: "red" } : {}}>მეხსიერების
+                 ტიპი</label>
+               {laptopErrors.laptop_hard_drive_typeError && <Alert1/>}
+             </div>
+             <Radio
+                title="SSD"
+                value="SSD"
+                name="laptop_hard_drive_type"
+                top="25px"
+                checked={laptop_hard_drive_type}
+                left="-15px"
+                handleChange={handleChange}
+             />
+             <Radio
+                title="HDD"
+                value="HDD"
+                name="laptop_hard_drive_type"
+                checked={laptop_hard_drive_type}
+                top="-5px"
                 left="150px"
-                width="407px"
-            />
+                handleChange={handleChange}
+             />
+           </div>
 
-            <div className={styles.laptopBrand}>
-              <select style={laptopErrors.laptop_brand_idError ? { "border": "1px solid red" } : {}}
-                      className={styles.selectLaptopBrand} value={laptop_brand_id} onChange={selectBrand}>
-                <option value=''>ლეპტოპის ბრენდი</option>
-                {brands?.data?.map(brand => <option className={styles.selectLaptopBrands} key={brand?.id}
-                                                    value={brand?.id}>{brand.name}</option>)}
-              </select>
-            </div>
+           <div className={styles.line2}/>
 
-            <div className={styles.line1}/>
+           <Input
+              title="შეძენის რიცხვი (არჩევითი)"
+              type="date"
+              name="laptop_purchase_date"
+              value={laptop_purchase_date}
+              error={laptopErrors.laptop_purchase_dateError}
+              onHandleChange={handleChange}
+              top="1140px"
+              left="150px"
+              width="407px"
+           />
 
-            <div className={styles.cpu}>
-              <select style={laptopErrors.laptop_cpuError ? { "border": "1px solid red" } : {}}
-                      className={styles.selectCpu} value={laptop_cpu}
-                      onChange={selectCpu}>
-                <option value=''>CPU</option>
-                {cpus?.data?.map(cpu => <option className={styles.selectCpus} key={cpu?.id}
-                                                value={cpu?.name}>{cpu.name}</option>)}
-              </select>
-            </div>
+           <Input
+              title="ლეპტოპის ფასი"
+              type="number"
+              name="laptop_price"
+              value={laptop_price}
+              placeholder="000"
+              onHandleChange={handleChange}
+              error={laptopErrors.laptop_priceError}
+              hint="მხოლოდ ციფრები"
+              top="1140px"
+              left="620px"
+              width="407px"
+           />
 
-            <Input
-                title="CPU-ს ბირთვი"
-                type="number"
-                name="laptop_cpu_cores"
-                value={laptop_cpu_cores}
-                placeholder="22"
-                onHandleChange={handleChange}
-                error={laptopErrors.laptop_cpu_coresError}
-                hint="მხოლოდ ციფრები"
-                top="760px"
-                left="450px"
-                width="276px"
-            />
-
-            <Input
-                title="CPU-ს ნაკადი"
-                type="number"
-                name="laptop_cpu_threads"
-                value={laptop_cpu_threads}
-                placeholder="365"
-                onHandleChange={handleChange}
-                error={laptopErrors.laptop_cpu_threadsError}
-                hint="მხოლოდ ციფრები"
-                top="760px"
-                left="750px"
-                width="276px"
-            />
-
-            <Input
-                title="RAM"
-                type="number"
-                name="laptop_ram"
-                value={laptop_ram}
-                placeholder="16"
-                onHandleChange={handleChange}
-                error={laptopErrors.laptop_ramError}
-                hint="მხოლოდ ციფრები"
-                top="930px"
+           <div className={styles.condition}>
+             <div className={styles.radioLabel}>
+               <label className={styles.conditionLabel}
+                      style={laptopErrors.laptop_stateError ? { color: "red" } : {}}>ლეპტოპის მდგომარეობა</label>
+               {laptopErrors.laptop_stateError && <Alert1/>}
+             </div>
+             <Radio
+                title="ახალი"
+                value="new"
+                name="laptop_state"
+                top="25px"
+                checked={laptop_state}
+                left="-15px"
+                handleChange={handleChange}
+             />
+             <Radio
+                title="მეორადი"
+                value="used"
+                name="laptop_state"
+                checked={laptop_state}
+                top="-5px"
                 left="150px"
-                width="407px"
-            />
+                handleChange={handleChange}
+             />
+           </div>
 
-            <div className={styles.hdContainer}>
-              <label className={styles.hdType}
-                     style={laptopErrors.laptop_hard_drive_typeError ? { color: "red" } : {}}>მეხსიერების
-                ტიპი</label>
-              <Radio
-                  title="SSD"
-                  value="SSD"
-                  name="laptop_hard_drive_type"
-                  top="25px"
-                  checked={laptop_hard_drive_type}
-                  left="-15px"
-                  handleChange={handleChange}
-              />
-              <Radio
-                  title="HDD"
-                  value="HDD"
-                  name="laptop_hard_drive_type"
-                  checked={laptop_hard_drive_type}
-                  top="-5px"
-                  left="150px"
-                  handleChange={handleChange}
-              />
-            </div>
-
-            <div className={styles.line2}/>
-
-            <Input
-                title="შეძენის რიცხვი (არჩევითი)"
-                type="date"
-                name="laptop_purchase_date"
-                value={laptop_purchase_date}
-                error={laptopErrors.laptop_purchase_dateError}
-                onHandleChange={handleChange}
-                top="1140px"
-                left="150px"
-                width="407px"
-            />
-
-            <Input
-                title="ლეპტოპის ფასი"
-                type="number"
-                name="laptop_price"
-                value={laptop_price}
-                placeholder="000"
-                onHandleChange={handleChange}
-                error={laptopErrors.laptop_priceError}
-                hint="მხოლოდ ციფრები"
-                top="1140px"
-                left="620px"
-                width="407px"
-            />
-
-            <div className={styles.condition}>
-              <label className={styles.conditionLabel}
-                     style={laptopErrors.laptop_stateError ? { color: "red" } : {}}>ლეპტოპის მდგომარეობა</label>
-              <Radio
-                  title="ახალი"
-                  value="new"
-                  name="laptop_state"
-                  top="25px"
-                  checked={laptop_state}
-                  left="-15px"
-                  handleChange={handleChange}
-              />
-              <Radio
-                  title="მეორადი"
-                  value="used"
-                  name="laptop_state"
-                  checked={laptop_state}
-                  top="-5px"
-                  left="150px"
-                  handleChange={handleChange}
-              />
-            </div>
-
-            <div className={styles.btnBack} onClick={goToUserForm}>უკან</div>
-            <Button type='submit' top="1397px" left="840px" width="219px">დამახსოვრება</Button>
-          </form>
-          <Logo top="1500px"/>
-        </div>
-      </div>
+           <div className={styles.btnBack} onClick={goToUserForm}>უკან</div>
+           <Button type='submit' top="1397px" left="840px" width="219px">დამახსოვრება</Button>
+         </form>
+         <Logo top="1500px"/>
+       </div>
+     </div>
   )
 }

@@ -1,0 +1,7 @@
+.logo {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    object-fit: fill;
+    background: url('../../assets/akar-icons_circle-check-fill.png');
+}

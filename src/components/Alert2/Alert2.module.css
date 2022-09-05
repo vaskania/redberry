@@ -1,0 +1,7 @@
+.logo {
+    position: relative;
+    width: 38px;
+    height: 34px;
+    object-fit: fill;
+    background: url('../../assets/Vector2.png');
+}

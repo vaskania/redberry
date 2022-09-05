@@ -17,15 +17,14 @@
 .uploadButton{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 18px 60px;
     gap: 20px;
 
     position: absolute;
     width: 233px;
     height: 60px;
-    left: calc(50% - 233px/2 - 0.5px);
+    /*left: calc(50% - 233px/2 - 0.5px);*/
     top: 116px;
     left: -350px;
     background: #62A1EB;
