@@ -159,9 +159,7 @@
     }
 
 
-    .inputHint {
-        width: 358px;
-    }
+
 
     .input {
         width: 100%;
@@ -190,7 +188,7 @@
 
     .inputContainer:focus-within {
         box-sizing: border-box;
-        width: 100%;
+        width: 358px;
         height: 60px;
         background: rgba(43, 75, 242, 0.06);
         border: 1.8px solid #6499FF;
@@ -218,11 +216,6 @@
         align-self: stretch;
         flex-grow: 0;
     }
-
-}
-
-
-@media screen and (max-width: 390px){
     .inputHint {
         top: 20px;
         width: 358px;
@@ -250,4 +243,7 @@
         align-self: stretch;
         flex-grow: 0;
     }
+
 }
+
+

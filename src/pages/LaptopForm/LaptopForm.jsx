@@ -309,8 +309,8 @@ export const LaptopForm = () => {
      <div className={styles.laptopForm}>
        <BackButton onClick={() => navigate('/user/create')}/>
        <div className={styles.nav}>
-         <div><h3>თანამშრომლის ინფო</h3></div>
-         <div><h3>ლეპტოპის მახასიათებლები</h3></div>
+         <div className={styles.laptopHide}><h3>თანამშრომლის ინფო</h3></div>
+         <div ><h3>ლეპტოპის მახასიათებლები</h3></div>
          <h6 className={styles.pages}>2/2</h6>
        </div>
        <div className={styles.line}/>

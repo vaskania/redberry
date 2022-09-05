@@ -1,5 +1,4 @@
 import { useDropzone } from 'react-dropzone'
-import { useEffect, useState } from "react";
 import styles from "./DragAndDrop.module.css";
 import Alert2 from "../Alert2/Alert2";
 
