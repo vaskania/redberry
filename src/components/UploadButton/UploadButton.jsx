@@ -1,9 +1,9 @@
 import {useDropzone} from 'react-dropzone'
-import styles from './DragAndDrop.module.css'
+import styles from './UploadButton.module.css'
 import {useEffect, useCallback} from "react";
 
 
-const DragAndDrop = ({file, selectFile,setFile, setUrl,...props}) => {
+const UploadButton = ({file, selectFile,setFile, setUrl,...props}) => {
     const uploadHandler =(e) => {
         if(!e.target.files[0]) return
         const file = e.target.files[0]
@@ -17,6 +17,7 @@ const DragAndDrop = ({file, selectFile,setFile, setUrl,...props}) => {
     return (
         <div className={styles.container} style={{...props}}>
             <div className={styles.fileInput}>
+                <label className={styles.imgLabel}>ჩააგდე და ატვირთე ლეპტოპის ფოტო</label>
                 <input className={styles.input} type="file" onChange={uploadHandler}/>
                 <button type="button" className={styles.uploadButton}>ატვირთე</button>
             </div>
@@ -24,4 +25,4 @@ const DragAndDrop = ({file, selectFile,setFile, setUrl,...props}) => {
     );
 };
 
-export default DragAndDrop;
+export default UploadButton;

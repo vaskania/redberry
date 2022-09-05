@@ -10,7 +10,7 @@ import Button from "../../components/Button/Button";
 import Logo from "../../components/Logo1/Logo";
 import Input from "../../components/Input/Input";
 import Radio from "../../components/Radio/Radio";
-import DragAndDrop from "../../components/DragAndDrop/DragAndDrop";
+import UploadButton from "../../components/UploadButton/UploadButton";
 
 export const LaptopForm = () => {
   const initialState = {
@@ -298,7 +298,7 @@ export const LaptopForm = () => {
           <form onSubmit={handleSubmit}>
             <div className={styles.img}>
               {url && <img src={url} alt={url} className={styles.image}/>}
-              {!url && <DragAndDrop
+              {!url && <UploadButton
                   top="0px"
                   left="0px"
                   file={laptop_image}

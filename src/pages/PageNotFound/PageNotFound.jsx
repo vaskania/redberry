@@ -1,5 +1,5 @@
 import styles from './PageNotFound.module.css'
-import DragAndDrop from "../../components/DragAndDrop/DragAndDrop";
+import UploadButton from "../../components/UploadButton/UploadButton";
 import {useState, useCallback} from "react";
 import {useDropzone} from 'react-dropzone'
 
@@ -11,19 +11,22 @@ const PageNotFound = () => {
     const {getRootProps, getInputProps} = useDropzone({
         accept: "image/*",
         onDrop: (acceptedFiles) =>{
-            acceptedFiles.map((file) => Object.assign(file, {
-                preview: URL.createObjectURL(file)
-            }))
+            setFile(
+                acceptedFiles.map(file=> Object.assign(file, {
+                    preview:URL.createObjectURL(file)
+                }))
+            )
+            console.log(acceptedFiles)
         }
     })
 
-    console.log(url)
+    console.log(file)
     return (
         <div className={styles.container}>
             <div {...getRootProps()}>
                 <input {...getInputProps()} />
                 <p>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</p>
-                      {/*<DragAndDrop  file={file} setFile={setFile} setUrl={setUrl}/>*/}
+                      {/*<UploadButton  file={file} setFile={setFile} setUrl={setUrl}/>*/}
             </div>
             <div>
                 <img src={file} alt={file}/>
