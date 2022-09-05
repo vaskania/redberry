@@ -1,20 +1,19 @@
-.fileInput{
+.fileInput {
     position: relative;
-    margin-bottom: 1.5rem;
 }
 
 .input {
-    position:relative;
+    position: relative;
     width: 233px;
     height: 60px;
-    top: 116px;
-    left: -350px;
+    top: 0px;
+    left: 0px;
     z-index: 2;
     opacity: 0;
     cursor: pointer;
 }
 
-.uploadButton{
+.uploadButton {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -24,9 +23,8 @@
     position: absolute;
     width: 233px;
     height: 60px;
-    /*left: calc(50% - 233px/2 - 0.5px);*/
-    top: 116px;
-    left: -350px;
+    top: 0px;
+    left: 0px;
     background: #62A1EB;
     border-radius: 8px;
     z-index: 1;
@@ -35,9 +33,14 @@
     font-size: 1.1rem;
     cursor: pointer;
 
-    border:none;
+    border: none;
     outline: none;
 
     transition: background-color 0.4s;
 }
+
+.input:hover + button {
+    background-color: #1A5DAB;
+}
+
 

@@ -30,7 +30,7 @@ export const LaptopsList = () => {
        <BackButton onClick={back} />
        <h3 className={styles.header} >ჩანაწერების სია</h3>
        <div className={styles.list}>
-         {products?.data.map(el => <LaptopItem key={el.laptop.id} data={el}/>)}
+         {products?.data.map(product => <LaptopItem key={product.laptop.id} data={product}/>)}
        </div>
 
      </div>

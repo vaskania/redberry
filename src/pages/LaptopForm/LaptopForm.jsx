@@ -229,7 +229,6 @@ export const LaptopForm = () => {
   function convertImageName(name) {
 
     if (!name || name.length <= 30) {
-      console.log('patalaa')
       return name
     }
 
@@ -250,7 +249,6 @@ export const LaptopForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try {
       if (!laptop_image || laptop_image.size > 1048576) {
         laptopErrors.laptop_imageError = true
       }
@@ -302,11 +300,7 @@ export const LaptopForm = () => {
       localStorage.removeItem('user')
       localStorage.removeItem('laptop')
       navigate('/success')
-    } catch (e) {
-      console.log(e)
-    }
-
-  }
+   }
   if (loading) return
 
   return (
@@ -334,9 +328,8 @@ export const LaptopForm = () => {
                   </div>
                   <UploadButton
                      position="absolute"
-                     top="-120px"
-                     left="990px"
-                     width="233px"
+                     top="0px"
+                     left="645px"
                      file={laptop_image}
                      setUrl={setUrl}
                      selectFile={selectFile}
@@ -354,8 +347,8 @@ export const LaptopForm = () => {
                 error={laptopErrors.laptop_imageError}
              />}
              {!url && <UploadButton
-                top="-40px"
-                left="-90px"
+                top="30px"
+                left="-430px"
                 file={laptop_image}
                 setUrl={setUrl}
                 selectFile={selectFile}
