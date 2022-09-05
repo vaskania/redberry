@@ -21,8 +21,7 @@
     left: 14px;
     top: 14px;
     bottom: 13px;
-
-    /*background: url(.jpg), #D9D9D9;*/
+    background: url('../../storage/Computer.svg');
     border-radius: 10px;
 }
 
@@ -81,9 +80,9 @@
         box-sizing: border-box;
         position: relative;
         height: 123px;
-        left: -60px;
+        left: 0px;
         right: 16px;
-        top: 0px;
+        top: 20px;
         display: block;
         flex: 0 0 100%;
         background: #EAFAFF;
@@ -96,11 +95,12 @@
     .img {
         position: absolute;
         width: 164px;
+        height: 109px;
         left: 7px;
         top: 7px;
         bottom: 7px;
-
-        /*background: url(.jpg), #D9D9D9;*/
+        object-fit: contain;
+        background: url('../../storage/Computer1.svg');
         border-radius: 6px;
     }
 

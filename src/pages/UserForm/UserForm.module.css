@@ -36,9 +36,18 @@
 .userInfo {
     display: flex;
     flex-direction: row;
-    position: relative;
-    max-width: 100%;
-    height: 100vh;
+    position: absolute;
+    width: 450px;
+    height: 140px;
+}
+
+.userInfo1 {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: 450px;
+    left: 600px;
+    height: 140px;
 }
 
 
@@ -144,6 +153,37 @@
     display: none;
 }
 
+.email{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: 878px;
+    top: 450px;
+    left: 150px;
+    height: 100px;
+}
+.phone{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: 878px;
+    top: 600px;
+    left: 60px;
+    height: 100px;
+}
+
+.button{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    top: 800px;
+    left: 1020px;
+    height: 100px;
+}
+
 @media screen and (max-width: 390px) {
     .userForm {
         position: relative;
@@ -154,15 +194,25 @@
     }
     .userInfo {
         display: flex;
-        flex-direction: row;
-        flex: 0 0 80%;
+        flex-direction: column;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         position: absolute;
         top:0px;
         left:0px;
         width: 390px;
-        height: 250px;
+        height: 270px;
+    }
+
+    .userInfo1 {
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        width: 390px;
+        top: 130px;
+        left: 0px;
+        height: 140px;
     }
 
     .nav {
@@ -224,7 +274,6 @@
         justify-content: center;
         padding: 0px;
         position: absolute;
-        border: 1px solid green;
         left: 0px;
         right: 0px;
         top: 100px;
@@ -239,7 +288,7 @@
         flex-direction: column;
         align-items: flex-start;
         padding: 8px 24px;
-
+        width: 350px;
         position: absolute;
         height: 76px;
         left: -8px;
@@ -268,7 +317,7 @@
         flex-direction: column;
         align-items: flex-start;
         padding: 8px 24px;
-
+        width: 350px;
         position: absolute;
         height: 76px;
         left: -8px;
@@ -291,4 +340,35 @@
         flex-grow: 0;
     }
 
+    .email{
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        width: 390px;
+        top: 450px;
+        left:0px;
+        height: 100px;
+    }
+
+    .phone{
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        width: 390px;
+        top: 600px;
+        left: 0px;
+        height: 100px;
+    }
+
+    .button{
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        width:0px;
+        top: 800px;
+        left: 360px;
+        height: 100px;
+    }
 }

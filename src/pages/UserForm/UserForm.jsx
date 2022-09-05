@@ -46,7 +46,6 @@ export const UserForm = () => {
       errors.surnameError = !geoRegEx.test(value) || value.length === 0;
     }
     if (name === "email") {
-      console.log(userForm.email)
       errors.emailError = !emailRegEx.test(value) || value.length === 0;
     }
     if (name === "phone_number") {
@@ -219,6 +218,8 @@ export const UserForm = () => {
                   top="0px"
                   left="0px"
               />
+            </div>
+            <div className={styles.userInfo1}>
               <Input
                   title="გვარი"
                   type="text"
@@ -229,7 +230,7 @@ export const UserForm = () => {
                   onHandleChange={handleChange}
                   hint="მინიმუმ 2 სიმბოლო, ქართული ასოები"
                   top="0px"
-                  left="550px"
+                  left="0px"
               />
             </div>
 
@@ -252,21 +253,22 @@ export const UserForm = () => {
                                                                     value={position?.name}>{position?.name}</option>)}
               < /select>
             </div>
+            <div className={styles.email}>
+              <Input
+                  title="მეილი"
+                  type="email"
+                  name="email"
+                  value={email}
+                  error={errors.emailError}
+                  placeholder="grisha666@redberry.ge"
+                  onHandleChange={handleChange}
+                  hint="უნდა მთავრდებოდეს @redberry.ge-ით"
+                  left="0px"
+                  width="878px"
+              />
+            </div>
 
-            <Input
-                title="მეილი"
-                type="email"
-                name="email"
-                value={email}
-                error={errors.emailError}
-                placeholder="grisha666@redberry.ge"
-                onHandleChange={handleChange}
-                hint="უნდა მთავრდებოდეს @redberry.ge-ით"
-                top="500px"
-                left="150px"
-                width="878px"
-            />
-
+            <div className={styles.phone}>
             <Input
                 title="ტელეფონის ნომერი"
                 type="text"
@@ -276,11 +278,13 @@ export const UserForm = () => {
                 placeholder="+995 590 00 07 01"
                 onHandleChange={handleChange}
                 hint="უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს"
-                top="650px"
-                left="150px"
                 width="878px"
             />
-            <Button top="809px" width="176px" left="875px">შემდეგი</Button>
+            </div>
+            <div className={styles.button}>
+              <Button width="176px">შემდეგი</Button>
+            </div>
+
           </form>
         </div>
         <Logo/>

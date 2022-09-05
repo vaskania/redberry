@@ -2,7 +2,6 @@ import styles from './Input.module.css'
 
 const Input = ({ ...props }) => {
   const { error } = props
-  // console.log(error
   const onChange = (e) => {
     return props.onHandleChange({ name: props.name, value: e.target.value })
   }

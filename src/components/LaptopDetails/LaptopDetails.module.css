@@ -11,6 +11,7 @@
     height: 342px;
     left: 250px;
     top: 181px;
+    background: url("../../storage/Laptop.svg");
 }
 
 .userDetails {
@@ -156,8 +157,8 @@
         right: 16px;
         top: 10px;
         width: 90%;
-
-        /*background: url(.jpg);*/
+        object-fit: fill;
+        background: url('../../storage/Laptop1.svg');
     }
     .userDetails{
         position: relative;

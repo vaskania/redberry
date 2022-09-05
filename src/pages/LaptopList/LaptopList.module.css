@@ -59,14 +59,15 @@
     color: red;
 }
 
+
+
 @media screen and (max-width: 390px) {
     .container {
-        position: absolute;
+        position: relative;
         width: 390px;
-        height: 1003px;
-
+        height: 1350px;
+        margin: auto 0px;
     }
-
     .header {
         position: relative;
         width: 147px;
@@ -91,13 +92,32 @@
     .list {
         position: relative;
         top: 100px;
-        left: 100px;
-        max-width: 290px;
+        left: 20px;
         margin: auto 0px;
-        height: 100vh;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 30px;
+    }
+
+    .title {
+        position: absolute;
+        width: 147px;
+        height: 20px;
+        left: calc(50% - 147px/2 - 0.5px);
+        top: 31px;
+
+        font-family: 'Helvetica Neue';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 20px;
+        /* identical to box height */
+
+        text-align: center;
+
+        /* შავი/700 */
+
+        color: #232323;
     }
 }

@@ -1,12 +1,11 @@
 import styles from './LaptopDetails.module.css'
-import {ReactComponent as Laptop} from "../../storage/Laptop.svg";
 
 const LaptopDetails = ({ data , brand, team, position}) => {
 
   const { user, laptop } = data.data
   return (
      <div className={styles.container}>
-       <div className={styles.img}><Laptop/></div>
+       <div className={styles.img}/>
        <div className={styles.userDetails}>
          <div className={styles.fields}>
            <span>სახელი:</span>
