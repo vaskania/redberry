@@ -1,11 +1,12 @@
 .container {
     position: relative;
     width: 1920px;
-    height: 1327px;
+    height: 100vh;
     margin: auto 0px;
 }
 
-.header {
+
+.section {
     position: relative;
     width: 312px;
     height: 21px;
@@ -20,6 +21,7 @@
     /* identical to box height, or 62% */
     color: #000000;
 }
+
 
 .list {
     position: absolute;
@@ -36,18 +38,24 @@
     box-sizing: border-box;
 }
 
+.list:after {
+    content: '';
+    width: 693px;
+}
+
 @media screen and (max-width: 390px) {
-    .container{
+    .container {
         position: absolute;
         width: 390px;
         height: 1003px;
 
     }
-    .header{
+
+    .header {
         position: relative;
         width: 147px;
         height: 20px;
-        left: calc(50% - 147px/2 - 0.5px);
+        left: calc(50% - 147px / 2 - 0.5px);
         top: 31px;
 
         font-family: 'Helvetica Neue';
