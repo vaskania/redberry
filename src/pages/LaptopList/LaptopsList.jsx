@@ -24,7 +24,7 @@ export const LaptopsList = () => {
   }, [])
 
   if (!products.data) return
-  if(!products ) return   (
+  if(products.data.length === 0 ) return   (
       <div className={styles.container}>
           <BackButton onClick={back} />
           <h3 className={styles.title} >ჩანაწერების სია</h3>
